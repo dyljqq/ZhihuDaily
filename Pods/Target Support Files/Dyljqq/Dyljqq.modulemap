@@ -1,0 +1,6 @@
+framework module Dyljqq {
+  umbrella header "Dyljqq-umbrella.h"
+
+  export *
+  module * { export * }
+}

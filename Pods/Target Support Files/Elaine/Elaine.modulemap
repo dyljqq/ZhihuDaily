@@ -1,0 +1,6 @@
+framework module Elaine {
+  umbrella header "Elaine-umbrella.h"
+
+  export *
+  module * { export * }
+}
