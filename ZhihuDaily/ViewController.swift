@@ -94,7 +94,7 @@ extension ViewController: DYLParallelDelegate {
 extension ViewController: DYLParallelDatasource {
     
     func viewForItemAtIndex(parallelView: DYLParallelView, index: Int) -> UIView {
-        let bannerView = BannerView(frame: CGRectMake(0, 0, screenSize.width, 150))
+        let bannerView = BannerView(frame: CGRectMake(0, 0, screenSize.width, 200))
         let imageURL = banners[index].image
         bannerView.update(imageURL!, content: banners[index].title)
         return bannerView

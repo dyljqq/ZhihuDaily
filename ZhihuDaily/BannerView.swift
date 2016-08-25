@@ -34,9 +34,6 @@ class BannerView: UIView {
     }
     
     override func updateConstraints() {
-        self.bannerImageView.snp_makeConstraints { make in
-            make.edges.equalTo(self)
-        }
         self.contentLabel.snp_makeConstraints { make in
             make.bottom.equalTo(-34)
             make.right.equalTo(self).offset(-leftSpace)
@@ -46,8 +43,9 @@ class BannerView: UIView {
     }
     
     private func setup() {
-        self.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        self.bannerImageView.frame = self.bounds
         self.addSubview(self.bannerImageView)
+        gradientLayer()
         self.addSubview(self.contentLabel)
     }
     
@@ -58,6 +56,31 @@ extension BannerView {
     func update(imageURL: String, content: String) {
         self.bannerImageView.setImageWithURL(NSURL(string: imageURL)!)
         self.contentLabel.text = content
+    }
+    
+    func gradientLayer() {
+        
+        // attention CGColor
+        let color1 = RGB(0, green: 0, blue: 0, alpha: 0.7).CGColor
+        let color2 = RGB(0, green: 0, blue: 0, alpha: 0.25).CGColor
+        let color3 = RGB(0, green: 0, blue: 0, alpha: 0.15).CGColor
+        let color4 = RGB(0, green: 0, blue: 0, alpha: 0.75).CGColor
+        let colors = [color1, color2, color3, color4]
+
+        let locations: [NSNumber] = [0, 0.2, 0.5, 1.0]
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors
+        gradientLayer.locations = locations
+        gradientLayer.frame = self.bounds
+        
+        let gradientView = UIView(frame: self.bounds)
+        gradientView.layer.insertSublayer(gradientLayer, atIndex: 0)
+        self.addSubview(gradientView)
+    }
+    
+    func cgColorForRed(red: CGFloat, green: CGFloat, blue: CGFloat) -> AnyObject {
+        return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0).CGColor as AnyObject
     }
     
 }
