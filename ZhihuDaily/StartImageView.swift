@@ -23,13 +23,13 @@ class StartImageView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = whiteColor
-        label.font = font(size: 18)
+        label.font = Font.font(size: 18)
         return label
     }()
     private lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.textColor = textGrayColor
-        label.font = font(size: 15)
+        label.font = Font.font(size: 15)
         return label
     }()
     

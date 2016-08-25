@@ -8,6 +8,8 @@
 
 import UIKit
 
-func font(size size: CGFloat)-> UIFont {
-    return UIFont.systemFontOfSize(size)
+struct Font {
+    static func font(size size: CGFloat)-> UIFont {
+        return UIFont.systemFontOfSize(size)
+    }
 }

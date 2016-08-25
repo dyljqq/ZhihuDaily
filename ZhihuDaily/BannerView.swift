@@ -18,7 +18,7 @@ class BannerView: UIView {
     private lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.textColor = whiteColor
-        label.font = font(size: 18)
+        label.font = Font.font(size: 18)
         label.numberOfLines = 0
         label.sizeToFit()
         return label
@@ -33,13 +33,13 @@ class BannerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func updateConstraints() {
+    override func layoutSubviews() {
         self.contentLabel.snp_makeConstraints { make in
             make.bottom.equalTo(-34)
             make.right.equalTo(self).offset(-leftSpace)
             make.left.equalTo(leftSpace)
         }
-        super.updateConstraints()
+        super.layoutSubviews()
     }
     
     private func setup() {
@@ -77,10 +77,6 @@ extension BannerView {
         let gradientView = UIView(frame: self.bounds)
         gradientView.layer.insertSublayer(gradientLayer, atIndex: 0)
         self.addSubview(gradientView)
-    }
-    
-    func cgColorForRed(red: CGFloat, green: CGFloat, blue: CGFloat) -> AnyObject {
-        return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0).CGColor as AnyObject
     }
     
 }

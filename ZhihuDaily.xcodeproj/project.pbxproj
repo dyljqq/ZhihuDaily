@@ -12,8 +12,14 @@
 		734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DEB1D6D7B3B00B1029B /* BannerView.swift */; };
 		734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DED1D6D8CEE00B1029B /* DYLParallelView.swift */; };
 		734C3DF11D6DA20E00B1029B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF01D6DA20E00B1029B /* Story.swift */; };
+		734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF31D6EB7FD00B1029B /* StoryCell.swift */; };
+		734C3E041D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DFD1D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.m */; };
+		734C3E051D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DFF1D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.m */; };
+		734C3E061D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 734C3E011D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.m */; };
+		734C3E071D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 734C3E031D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.m */; };
+		73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B82B071D6EE6F100CB9634 /* Extension.swift */; };
 		73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5BECF1D6AF089006089F3 /* AppDelegate.swift */; };
-		73C5BED21D6AF089006089F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5BED11D6AF089006089F3 /* ViewController.swift */; };
+		73C5BED21D6AF089006089F3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5BED11D6AF089006089F3 /* MainViewController.swift */; };
 		73C5BED51D6AF089006089F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5BED31D6AF089006089F3 /* Main.storyboard */; };
 		73C5BED71D6AF089006089F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C5BED61D6AF089006089F3 /* Assets.xcassets */; };
 		73C5BEDA1D6AF089006089F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5BED81D6AF089006089F3 /* LaunchScreen.storyboard */; };
@@ -38,9 +44,22 @@
 		734C3DEB1D6D7B3B00B1029B /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		734C3DED1D6D8CEE00B1029B /* DYLParallelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLParallelView.swift; sourceTree = "<group>"; };
 		734C3DF01D6DA20E00B1029B /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		734C3DF31D6EB7FD00B1029B /* StoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
+		734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UITableView_FDTemplateLayoutCell.framework; path = "Pods/../build/Debug-iphoneos/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework"; sourceTree = "<group>"; };
+		734C3DF81D6EC74500B1029B /* ZhihuDaily-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-swift.h"; sourceTree = "<group>"; };
+		734C3DF91D6EC94300B1029B /* ZhihuDaily-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-Bridging-Header.h"; sourceTree = "<group>"; };
+		734C3DFC1D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
+		734C3DFD1D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
+		734C3DFE1D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
+		734C3DFF1D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
+		734C3E001D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
+		734C3E011D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
+		734C3E021D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
+		734C3E031D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
+		73B82B071D6EE6F100CB9634 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		73C5BECC1D6AF088006089F3 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5BECF1D6AF089006089F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		73C5BED11D6AF089006089F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		73C5BED11D6AF089006089F3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		73C5BED41D6AF089006089F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73C5BED61D6AF089006089F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73C5BED91D6AF089006089F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,6 +129,46 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		734C3DF21D6EB7E000B1029B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				734C3DF31D6EB7FD00B1029B /* StoryCell.swift */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		734C3DFA1D6ECA0E00B1029B /* FrameWork */ = {
+			isa = PBXGroup;
+			children = (
+				734C3DFB1D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell */,
+			);
+			path = FrameWork;
+			sourceTree = "<group>";
+		};
+		734C3DFB1D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				734C3DFC1D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.h */,
+				734C3DFD1D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.m */,
+				734C3DFE1D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.h */,
+				734C3DFF1D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.m */,
+				734C3E001D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.h */,
+				734C3E011D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.m */,
+				734C3E021D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.h */,
+				734C3E031D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.m */,
+			);
+			name = "UITableView+FDTemplateLayoutCell";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		73B82B061D6EE6DB00CB9634 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				73B82B071D6EE6F100CB9634 /* Extension.swift */,
+			);
+			name = extension;
+			sourceTree = "<group>";
+		};
 		73C5BEC31D6AF088006089F3 = {
 			isa = PBXGroup;
 			children = (
@@ -131,14 +190,17 @@
 		73C5BECE1D6AF089006089F3 /* ZhihuDaily */ = {
 			isa = PBXGroup;
 			children = (
+				734C3DFA1D6ECA0E00B1029B /* FrameWork */,
 				73CA2D541D6AF5A7009DD62A /* Class */,
 				73C5BECF1D6AF089006089F3 /* AppDelegate.swift */,
-				73C5BED11D6AF089006089F3 /* ViewController.swift */,
+				73C5BED11D6AF089006089F3 /* MainViewController.swift */,
 				73CA2D621D6BEDCE009DD62A /* StartImageView.swift */,
 				73C5BED31D6AF089006089F3 /* Main.storyboard */,
 				73C5BED61D6AF089006089F3 /* Assets.xcassets */,
 				73C5BED81D6AF089006089F3 /* LaunchScreen.storyboard */,
 				73C5BEDB1D6AF089006089F3 /* Info.plist */,
+				734C3DF81D6EC74500B1029B /* ZhihuDaily-swift.h */,
+				734C3DF91D6EC94300B1029B /* ZhihuDaily-Bridging-Header.h */,
 			);
 			path = ZhihuDaily;
 			sourceTree = "<group>";
@@ -147,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				73CA2D581D6AF877009DD62A /* DailyRequest.swift */,
+				73B82B061D6EE6DB00CB9634 /* extension */,
+				734C3DF21D6EB7E000B1029B /* cell */,
 				734C3DEF1D6DA1FD00B1029B /* Model */,
 				734C3DEA1D6D7B2C00B1029B /* View */,
 				734C3DE31D6D400500B1029B /* weidget */,
@@ -177,6 +241,7 @@
 		97CE1D95516933D74EFDFC40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */,
 				73CA2D671D6BF21E009DD62A /* SnapKit.framework */,
 				73CA2D601D6B0A0B009DD62A /* Dyljqq.framework */,
 				73CA2D5E1D6AFD16009DD62A /* Elaine.framework */,
@@ -309,19 +374,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73C5BED21D6AF089006089F3 /* ViewController.swift in Sources */,
+				734C3E051D6ECA0E00B1029B /* UITableView+FDKeyedHeightCache.m in Sources */,
+				73C5BED21D6AF089006089F3 /* MainViewController.swift in Sources */,
 				734C3DE91D6D797C00B1029B /* DYLCarousel.swift in Sources */,
 				73CA2D661D6BEEA6009DD62A /* Util.swift in Sources */,
+				734C3E041D6ECA0E00B1029B /* UITableView+FDIndexPathHeightCache.m in Sources */,
+				734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */,
 				734C3DE51D6D401C00B1029B /* CircleProgressView.swift in Sources */,
 				73CA2D6A1D6BFC7F009DD62A /* Color.swift in Sources */,
 				734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */,
 				73CA2D591D6AF877009DD62A /* DailyRequest.swift in Sources */,
 				73CA2D6C1D6BFDBF009DD62A /* Font.swift in Sources */,
+				734C3E071D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				734C3DF11D6DA20E00B1029B /* Story.swift in Sources */,
+				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
 				73CA2D571D6AF5D6009DD62A /* URLS.swift in Sources */,
 				734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */,
 				73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */,
 				73CA2D631D6BEDCE009DD62A /* StartImageView.swift in Sources */,
+				734C3E061D6ECA0E00B1029B /* UITableView+FDTemplateLayoutCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,10 +506,16 @@
 			baseConfigurationReference = 4FFFBD821902AB51C25F535E /* Pods-ZhihuDaily.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/UITableView+FDTemplateLayoutCell",
+				);
 				INFOPLIST_FILE = ZhihuDaily/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jqq.ZhihuDaily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZhihuDaily/ZhihuDaily-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -447,10 +524,16 @@
 			baseConfigurationReference = A206D4D1692739515AEA34E3 /* Pods-ZhihuDaily.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/UITableView+FDTemplateLayoutCell",
+				);
 				INFOPLIST_FILE = ZhihuDaily/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jqq.ZhihuDaily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ZhihuDaily/ZhihuDaily-Bridging-Header.h";
 			};
 			name = Release;
 		};

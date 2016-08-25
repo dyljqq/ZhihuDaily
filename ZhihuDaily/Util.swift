@@ -12,6 +12,7 @@ let screenBounds = UIScreen.mainScreen().bounds
 let screenSize = screenBounds.size
 let screenScale = UIScreen.mainScreen().scale
 let resolutionRate = CGSize(width: screenSize.width * screenScale, height: screenSize.height * screenScale)
+let navigationBarHeight: CGFloat = 64.0
 
 let leftSpace = 15.0
 let cornerRadius: CGFloat = 5.0
