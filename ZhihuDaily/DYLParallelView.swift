@@ -45,7 +45,7 @@ public class DYLParallelView: UIView {
     }
     
     private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: self.bounds)
+        let scrollView = UIScrollView()
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.pagingEnabled = true
@@ -56,6 +56,10 @@ public class DYLParallelView: UIView {
         let pageControl = UIPageControl()
         return pageControl
     }()
+    
+    private var containerView = UIView()
+    
+    private var items = [UIView]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,10 +72,25 @@ public class DYLParallelView: UIView {
     
     private func setup() {
         assert(self.datasource == nil, "请实现DYLParallelDatasource")
-        
-        self.addSubview(self.scrollView)
+        containerView.backgroundColor = UIColor.redColor()
+//        self.addSubview(self.scrollView)
         self.addSubview(self.pageControl)
+        self.addSubview(self.containerView)
         reload()
+        
+//        self.scrollView.snp_makeConstraints { make in
+//            make.edges.equalTo(self)
+//        }
+        self.pageControl.snp_makeConstraints { make in
+            make.centerX.equalTo(self)
+            make.bottom.equalTo(self).offset(0)
+            make.height.equalTo(34)
+            make.width.equalTo(100)
+        }
+        self.containerView.snp_makeConstraints { make in
+            make.edges.equalTo(self)
+        }
+        
     }
     
     func reload() {
@@ -80,8 +99,6 @@ public class DYLParallelView: UIView {
         }
         let count = datasource.numOfItemsInParallelView()
         self.pageControl.numberOfPages = count
-        self.pageControl.center = CGPoint(x: CGRectGetMidX(self.scrollView.frame), y: self.scrollView.frame.size.height - 17)
-        self.pageControl.bounds = CGRectMake(0, 0, 100, 34)
         for i in 0 ..< count {
             addItem(i)
         }
@@ -89,10 +106,38 @@ public class DYLParallelView: UIView {
         layoutIfNeeded()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    public override func updateConstraints() {
+        super.updateConstraints()
+    }
+    
+    public func layoutView(offset offset: CGPoint) {
+        let offsetY = offset.y
+        if offsetY < -154 {
+            // TODO
+        } else {
+            var rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            rect.origin.y += offsetY
+            rect.size.height -= offsetY
+            containerView.frame = rect
+            containerView.backgroundColor = UIColor.blueColor()
+            layoutIfNeeded()
+        }
+    }
+    
     private func addItem(index: Int) {
-        let item = self.datasource!.viewForItemAtIndex(self, index: index)
-        item.frame = CGRectMake(CGFloat(index) * screenSize.width, 0, frame.size.width, frame.size.height)
-        scrollView.addSubview(item)
+//        let item = self.datasource!.viewForItemAtIndex(self, index: index)
+        let item = UIView()
+        item.backgroundColor = UIColor.greenColor()
+        items.append(item)
+        containerView.addSubview(item)
+        item.snp_makeConstraints { make in
+            make.left.equalTo(CGFloat(index) * screenSize.width)
+            make.top.width.bottom.equalTo(containerView)
+        }
     }
     
 }

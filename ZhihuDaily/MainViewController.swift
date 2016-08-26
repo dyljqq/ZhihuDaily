@@ -17,10 +17,13 @@ class MainViewController: UIViewController {
     
     private var lauchImageView: StartImageView? = StartImageView()
     private lazy var topBanner: DYLParallelView = {
-        let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, 200))
+        let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, 154))
         topBanner.delegate = self
         topBanner.datasource = self
         topBanner.selectedIndex = 0
+        topBanner.clipsToBounds = false
+        topBanner.backgroundColor = UIColor.redColor()
+        topBanner.autoresizesSubviews = true
         return topBanner
     }()
     private var banners = [Story]()
@@ -32,11 +35,12 @@ class MainViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView = self.topBanner
         tableView.registerClass(StoryCell.self, forCellReuseIdentifier: Constant.reuseIdentifier)
         tableView.tableFooterView = UIView()
         return tableView
     }()
+    
+    private var containerView = DYLContainerView(frame: CGRectMake(0, 0, 375, 154))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +51,12 @@ class MainViewController: UIViewController {
     
     func setup() {
         self.navigationItem.titleView?.hidden = true
-        stories = banners
         self.view.addSubview(self.tableView)
         self.tableView.hidden = true
+//        self.topBanner.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
+//        self.containerView.backgroundColor = UIColor.greenColor()
+        self.tableView.tableHeaderView = self.containerView
+        
         guard let lauchImageView = self.lauchImageView else {
             return
         }
@@ -91,7 +98,7 @@ extension MainViewController {
         
         let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self, action: #selector(showMenu))
         left.tintColor = whiteColor
-         navigationItem.setLeftBarButtonItem(left, animated: true)
+        navigationItem.setLeftBarButtonItem(left, animated: true)
     }
     
     func showMenu() {
@@ -139,14 +146,20 @@ extension MainViewController: DYLParallelDelegate {
 extension MainViewController: DYLParallelDatasource {
     
     func viewForItemAtIndex(parallelView: DYLParallelView, index: Int) -> UIView {
-        let bannerView = BannerView(frame: CGRectMake(0, 0, screenSize.width, 200))
-        let imageURL = banners[index].image
-        bannerView.update(imageURL!, content: banners[index].title)
-        return bannerView
+//        let bannerView = BannerView()
+//        let imageURL = banners[index].image
+//        bannerView.update(imageURL!, content: banners[index].title)
+////        bannerView.backgroundColor = blackColor
+////        bannerView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
+//        return bannerView
+        
+        let view = UIView()
+        view.backgroundColor = blackColor
+        return view
     }
     
     func numOfItemsInParallelView() -> Int {
-        return banners.count
+        return 1
     }
     
 }
@@ -184,16 +197,17 @@ extension MainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let MAX: CGFloat = 90.0
+        let header = self.tableView.tableHeaderView as! DYLContainerView
+        header.layoutView(offset: scrollView.contentOffset)
         // up
         if offsetY >= -navigationBarHeight {
-            
             let alpha = min(1, (navigationBarHeight + offsetY)/(navigationBarHeight + MAX))
             self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor.colorWithAlphaComponent(alpha))
-            
         } else {
             // down
         }
     }
+    
 }
 
 

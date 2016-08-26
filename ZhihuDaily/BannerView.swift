@@ -12,6 +12,7 @@ class BannerView: UIView {
     
     private lazy var bannerImageView: UIImageView = {
        let imageView = UIImageView()
+        imageView.contentMode = .ScaleAspectFill
         return imageView
     }()
     
@@ -24,6 +25,9 @@ class BannerView: UIView {
         return label
     }()
     
+    private let gradientView = UIView()
+    private let gradientLayer = CAGradientLayer()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -34,19 +38,30 @@ class BannerView: UIView {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+    }
+    
+    private func setup() {
+        self.addSubview(self.bannerImageView)
+        addGradientLayer()
+        self.addSubview(self.contentLabel)
+        
+        self.bannerImageView.snp_makeConstraints { make in
+            make.edges.equalTo(self)
+        }
+        self.gradientView.snp_makeConstraints { make in
+            make.edges.equalTo(self.bannerImageView)
+        }
         self.contentLabel.snp_makeConstraints { make in
             make.bottom.equalTo(-34)
             make.right.equalTo(self).offset(-leftSpace)
             make.left.equalTo(leftSpace)
         }
-        super.layoutSubviews()
-    }
-    
-    private func setup() {
-        self.bannerImageView.frame = self.bounds
-        self.addSubview(self.bannerImageView)
-        gradientLayer()
-        self.addSubview(self.contentLabel)
+        
     }
     
 }
@@ -58,7 +73,7 @@ extension BannerView {
         self.contentLabel.text = content
     }
     
-    func gradientLayer() {
+    func addGradientLayer() {
         
         // attention CGColor
         let color1 = RGB(0, green: 0, blue: 0, alpha: 0.7).CGColor
@@ -68,13 +83,8 @@ extension BannerView {
         let colors = [color1, color2, color3, color4]
 
         let locations: [NSNumber] = [0, 0.2, 0.5, 1.0]
-        
-        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors
         gradientLayer.locations = locations
-        gradientLayer.frame = self.bounds
-        
-        let gradientView = UIView(frame: self.bounds)
         gradientView.layer.insertSublayer(gradientLayer, atIndex: 0)
         self.addSubview(gradientView)
     }
