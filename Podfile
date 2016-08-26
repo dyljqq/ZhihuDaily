@@ -8,5 +8,6 @@ pod 'Alamofire', '~> 3.4'
 pod ‘Elaine’, ‘~>1.0.1’
 pod ‘Dyljqq’, ‘~>1.0.0’
 pod ’SnapKit’
+pod 'Kingfisher', '~> 2.4'
 
 end

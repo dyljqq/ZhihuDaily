@@ -14,8 +14,6 @@ public class ParallaxHeaderView: UIView {
     
     public var upperLimit: CGFloat = -154.0
     
-    public var subview: UIView!
-    
     class func parallaxHeader(subview subview: UIView, size: CGSize)-> ParallaxHeaderView {
         let headerView = ParallaxHeaderView(frame: CGRectMake(0, 0, size.width, size.height))
         headerView.initialHeader(subview)
@@ -24,8 +22,7 @@ public class ParallaxHeaderView: UIView {
     
     func initialHeader(subview: UIView) {
         scrollView = UIScrollView(frame: self.bounds)
-        scrollView.backgroundColor = UIColor.redColor()
-        self.subview = subview
+        subview.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
         scrollView.addSubview(subview)
         self.addSubview(scrollView)
     }
@@ -39,11 +36,7 @@ public class ParallaxHeaderView: UIView {
             rect.origin.y += offsetY
             rect.size.height -= offsetY
             scrollView.frame = rect
-            subview.frame = scrollView.bounds
-            subview.backgroundColor = UIColor.blueColor()
             scrollView.clipsToBounds = false
-            print("scroll frame: \(scrollView.frame)")
-            print("subview frame: \(subview.frame)")
         }
     }
     

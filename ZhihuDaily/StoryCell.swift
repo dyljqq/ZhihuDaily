@@ -59,6 +59,6 @@ public class StoryCell: UITableViewCell {
 extension StoryCell {
     func updateStory(story: Story) {
         self.contentLabel.text = story.title
-        self.detailImageView.setImageWithURL(NSURL(string: story.image)!)
+        self.detailImageView.kf_setImageWithURL(NSURL(string: story.image)!)
     }
 }

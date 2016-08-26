@@ -11,8 +11,9 @@ import UIKit
 class BannerView: UIView {
     
     private lazy var bannerImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView(frame: self.bounds)
         imageView.contentMode = .ScaleAspectFill
+        imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
         return imageView
     }()
     
@@ -20,6 +21,7 @@ class BannerView: UIView {
         let label = UILabel()
         label.textColor = whiteColor
         label.font = Font.font(size: 18)
+        label.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
         label.numberOfLines = 0
         label.sizeToFit()
         return label
@@ -39,6 +41,11 @@ class BannerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.contentLabel.snp_makeConstraints { make in
+            make.bottom.equalTo(-34)
+            make.right.equalTo(self).offset(-leftSpace)
+            make.left.equalTo(leftSpace)
+        }
     }
     
     override func updateConstraints() {
@@ -49,13 +56,6 @@ class BannerView: UIView {
         self.addSubview(self.bannerImageView)
         addGradientLayer()
         self.addSubview(self.contentLabel)
-        
-        self.bannerImageView.snp_makeConstraints { make in
-            make.edges.equalTo(self)
-        }
-        self.gradientView.snp_makeConstraints { make in
-            make.edges.equalTo(self.bannerImageView)
-        }
         self.contentLabel.snp_makeConstraints { make in
             make.bottom.equalTo(-34)
             make.right.equalTo(self).offset(-leftSpace)
@@ -69,7 +69,7 @@ class BannerView: UIView {
 extension BannerView {
     
     func update(imageURL: String, content: String) {
-        self.bannerImageView.setImageWithURL(NSURL(string: imageURL)!)
+        self.bannerImageView.kf_setImageWithURL(NSURL(string: imageURL)!)
         self.contentLabel.text = content
     }
     

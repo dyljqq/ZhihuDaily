@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Dyljqq
 
 class MainViewController: UIViewController {
     
@@ -15,14 +14,14 @@ class MainViewController: UIViewController {
         static let reuseIdentifier = "StoryCell"
     }
     
-    private var lauchImageView: StartImageView? = StartImageView()
+    private var lauchViewController: LauchViewController = LauchViewController()
     private lazy var topBanner: DYLParallelView = {
         let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, 154))
         topBanner.delegate = self
         topBanner.datasource = self
         topBanner.selectedIndex = 0
         topBanner.clipsToBounds = false
-        topBanner.backgroundColor = UIColor.redColor()
+        topBanner.backgroundColor = whiteColor
         topBanner.autoresizesSubviews = true
         return topBanner
     }()
@@ -40,8 +39,6 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    private var containerView = DYLContainerView(frame: CGRectMake(0, 0, 375, 154))
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,29 +48,31 @@ class MainViewController: UIViewController {
     
     func setup() {
         self.navigationItem.titleView?.hidden = true
-        self.view.addSubview(self.tableView)
-        self.tableView.hidden = true
-//        self.topBanner.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
-//        self.containerView.backgroundColor = UIColor.greenColor()
-        self.tableView.tableHeaderView = self.containerView
         
-        guard let lauchImageView = self.lauchImageView else {
-            return
+        // delete the bottom line
+        for subview in (self.navigationController?.navigationBar.subviews)! {
+            if subview.isKindOfClass(UIImageView.self) {
+                subview.hidden = true
+            }
         }
+        
+        self.view.addSubview(self.tableView)
+        
+        let headerView = ParallaxHeaderView.parallaxHeader(subview: self.topBanner, size: CGSizeMake(375, 154))
+        self.tableView.tableHeaderView = headerView
+        
+        let lauchImageView = lauchViewController.view
+        lauchImageView.alpha = 0.99
+        self.addChildViewController(lauchViewController)
         self.view.addSubview(lauchImageView)
-        lauchImageView.alpha = 0.9
-        lauchImageView.snp_makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
         UIView.animateWithDuration(2.5, animations: {
             lauchImageView.alpha = 1.0
         }, completion: { stop in
             UIView.animateWithDuration(0.2, animations: {
+                self.setNavigation()
                 lauchImageView.alpha = 0.0
             }) { finished in
                 lauchImageView.removeFromSuperview()
-                self.tableView.hidden = false
-                self.setNavigation()
             }
         })
         
@@ -94,6 +93,7 @@ extension MainViewController {
         self.title = "今日热闻"
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
+        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self, action: #selector(showMenu))
@@ -106,7 +106,6 @@ extension MainViewController {
     }
     
     func getData() {
-        
         DailyRequest.sharedInstance.getNewStory { value in
             print(value)
             guard let topStories = value["top_stories"] as? [[String: AnyObject]] else {
@@ -146,20 +145,14 @@ extension MainViewController: DYLParallelDelegate {
 extension MainViewController: DYLParallelDatasource {
     
     func viewForItemAtIndex(parallelView: DYLParallelView, index: Int) -> UIView {
-//        let bannerView = BannerView()
-//        let imageURL = banners[index].image
-//        bannerView.update(imageURL!, content: banners[index].title)
-////        bannerView.backgroundColor = blackColor
-////        bannerView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
-//        return bannerView
-        
-        let view = UIView()
-        view.backgroundColor = blackColor
-        return view
+        let bannerView = BannerView(frame: CGRectMake(0, 0, screenSize.width, 154))
+        let imageURL = banners[index].image
+        bannerView.update(imageURL!, content: banners[index].title)
+        return bannerView
     }
     
     func numOfItemsInParallelView() -> Int {
-        return 1
+        return banners.count
     }
     
 }
@@ -197,7 +190,7 @@ extension MainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let MAX: CGFloat = 90.0
-        let header = self.tableView.tableHeaderView as! DYLContainerView
+        let header = self.tableView.tableHeaderView as! ParallaxHeaderView
         header.layoutView(offset: scrollView.contentOffset)
         // up
         if offsetY >= -navigationBarHeight {

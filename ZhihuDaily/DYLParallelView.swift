@@ -45,7 +45,7 @@ public class DYLParallelView: UIView {
     }
     
     private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
+        let scrollView = UIScrollView(frame: self.bounds)
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.pagingEnabled = true
@@ -57,10 +57,6 @@ public class DYLParallelView: UIView {
         return pageControl
     }()
     
-    private var containerView = UIView()
-    
-    private var items = [UIView]()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -70,74 +66,45 @@ public class DYLParallelView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        scrollView.frame = bounds
+        self.pageControl.center = CGPointMake(CGRectGetMidX(bounds), bounds.height - 17)
+        self.pageControl.bounds = CGRectMake(0, 0, 100, 34)
+    }
+    
     private func setup() {
         assert(self.datasource == nil, "请实现DYLParallelDatasource")
-        containerView.backgroundColor = UIColor.redColor()
-//        self.addSubview(self.scrollView)
+        self.addSubview(self.scrollView)
         self.addSubview(self.pageControl)
-        self.addSubview(self.containerView)
+        self.pageControl.center = CGPointMake(CGRectGetMidX(bounds), bounds.height - 17)
+        self.pageControl.bounds = CGRectMake(0, 0, 100, 34)
+        
         reload()
-        
-//        self.scrollView.snp_makeConstraints { make in
-//            make.edges.equalTo(self)
-//        }
-        self.pageControl.snp_makeConstraints { make in
-            make.centerX.equalTo(self)
-            make.bottom.equalTo(self).offset(0)
-            make.height.equalTo(34)
-            make.width.equalTo(100)
-        }
-        self.containerView.snp_makeConstraints { make in
-            make.edges.equalTo(self)
-        }
-        
     }
     
     func reload() {
         guard let datasource = self.datasource else {
             return ;
         }
+        
+        for subview in scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        
         let count = datasource.numOfItemsInParallelView()
         self.pageControl.numberOfPages = count
         for i in 0 ..< count {
             addItem(i)
         }
         self.scrollView.contentSize = CGSizeMake(CGFloat(count) * self.frame.width, self.frame.height)
-        layoutIfNeeded()
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    public override func updateConstraints() {
-        super.updateConstraints()
-    }
-    
-    public func layoutView(offset offset: CGPoint) {
-        let offsetY = offset.y
-        if offsetY < -154 {
-            // TODO
-        } else {
-            var rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-            rect.origin.y += offsetY
-            rect.size.height -= offsetY
-            containerView.frame = rect
-            containerView.backgroundColor = UIColor.blueColor()
-            layoutIfNeeded()
-        }
     }
     
     private func addItem(index: Int) {
-//        let item = self.datasource!.viewForItemAtIndex(self, index: index)
-        let item = UIView()
-        item.backgroundColor = UIColor.greenColor()
-        items.append(item)
-        containerView.addSubview(item)
-        item.snp_makeConstraints { make in
-            make.left.equalTo(CGFloat(index) * screenSize.width)
-            make.top.width.bottom.equalTo(containerView)
-        }
+        let item = self.datasource!.viewForItemAtIndex(self, index: index)
+        item.frame = CGRectMake(CGFloat(index) * screenSize.width, 0, bounds.width, bounds.height)
+        item.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
+        scrollView.addSubview(item)
     }
     
 }

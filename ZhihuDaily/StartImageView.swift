@@ -98,7 +98,7 @@ extension StartImageView {
     func setData() {
         DailyRequest.sharedInstance.getStartImage { value in
             if let urlString = value["img"] as? String {
-                self.startImageView.setImageWithURL(NSURL(string: urlString)!)
+                self.startImageView.kf_setImageWithURL(NSURL(string: urlString)!)
             }
         }
         titleLabel.text = "知乎日报"
