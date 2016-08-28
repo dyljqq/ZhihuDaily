@@ -96,11 +96,11 @@ extension StartImageView {
     
     // 初始化数据
     func setData() {
-        DailyRequest.sharedInstance.getStartImage { value in
+        DailyRequest.sharedInstance.callback(URLString: URLS.start_image_url, successCallback: { value in
             if let urlString = value["img"] as? String {
                 self.startImageView.kf_setImageWithURL(NSURL(string: urlString)!)
             }
-        }
+        })
         titleLabel.text = "知乎日报"
         contentLabel.text = "每天三次，每次7分钟"
         circleProgress.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))

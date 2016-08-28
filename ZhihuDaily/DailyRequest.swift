@@ -7,34 +7,34 @@
 //
 
 import Foundation
-import Elaine
+import Alamofire
 
 typealias SuccessCallback = (value: [String: AnyObject])-> ()
+typealias FailureCallback = (error: NSError)-> ()
 
 class DailyRequest {
+    
+    var method: Alamofire.Method = .GET
     
     static let sharedInstance: DailyRequest = {
         return DailyRequest()
     }()
     
-    func getStartImage(callback: SuccessCallback) {
-        Elaine.request(.GET, URLS.start_image_url).responseJSON { response in
+    func callback(URLString URLString: String,
+                            parameters: [[String: AnyObject]]? = nil,
+                            successCallback: SuccessCallback,
+                            failureCallback: FailureCallback? = nil) {
+        print("URLString: \(URLString)\nparameters: \(parameters)")
+        Alamofire.request(method, URLString).responseJSON { response in
             switch response.result {
             case .Success(let value):
-                callback(value: value as! [String : AnyObject])
+                print("response value: \(value)")
+                successCallback(value: value as! [String : AnyObject])
             case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func getNewStory(callback: SuccessCallback) {
-        Elaine.request(.GET, URLS.new_story_url).responseJSON { response in
-            switch response.result {
-            case .Success(let value):
-                callback(value: value as! [String : AnyObject])
-            case .Failure(let error):
-                print(error)
+                print("Network error: \(error)")
+                if let failureCallback = failureCallback {
+                    failureCallback(error: error)
+                }
             }
         }
     }

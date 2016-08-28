@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 private var overlayKey: Void?
 
@@ -50,3 +51,48 @@ extension UINavigationBar {
     }
     
 }
+
+extension NSDate {
+    func format(format format: String)-> String {
+        let dateFormat = NSDateFormatter()
+        dateFormat.dateFormat = format
+        return dateFormat.stringFromDate(self)
+    }
+}
+
+extension String {
+    func dateString(format: String)-> String {
+        
+        let dateFormat = NSDateFormatter()
+        dateFormat.dateFormat = format
+        
+        guard let date = dateFormat.dateFromString(self) else {
+            print("时间不合法")
+            return ""
+        }
+        print("date: \(date)")
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Month, .Day, .Weekday], fromDate: date)
+        return "\(components.month)月\(components.day)日 \(components.weekday.weekday())"
+    }
+}
+
+extension Int {
+    func weekday()-> String {
+        var  str = ""
+        switch self {
+        case 0: str = "星期日"
+        case 1: str = "星期一"
+        case 2: str = "星期二"
+        case 3: str = "星期三"
+        case 4: str = "星期四"
+        case 5: str = "星期五"
+        case 6: str = "星期六"
+        default:
+            str = ""
+        }
+        return str
+    }
+}
+

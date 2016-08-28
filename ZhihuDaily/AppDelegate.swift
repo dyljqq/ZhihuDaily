@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SwiftDate
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

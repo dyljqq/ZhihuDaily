@@ -13,7 +13,7 @@ class BannerView: UIView {
     private lazy var bannerImageView: UIImageView = {
         let imageView = UIImageView(frame: self.bounds)
         imageView.contentMode = .ScaleAspectFill
-        imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
+//        imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
         return imageView
     }()
     
@@ -27,8 +27,11 @@ class BannerView: UIView {
         return label
     }()
     
-    private let gradientView = UIView()
-    private let gradientLayer = CAGradientLayer()
+    private lazy var gradientView: UIView = {
+        let view = UIView(frame: self.bounds)
+        view.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +44,13 @@ class BannerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        gradientView.frame = bounds
+        
+        gradientView.layer.sublayers![0].removeFromSuperlayer()
+        addGradientLayer()
+        
+        bannerImageView.frame = bounds
+        contentLabel.bringSubviewToFront(self)
         self.contentLabel.snp_makeConstraints { make in
             make.bottom.equalTo(-34)
             make.right.equalTo(self).offset(-leftSpace)
@@ -54,8 +64,9 @@ class BannerView: UIView {
     
     private func setup() {
         self.addSubview(self.bannerImageView)
-        addGradientLayer()
+        self.addSubview(self.gradientView)
         self.addSubview(self.contentLabel)
+        addGradientLayer()
         self.contentLabel.snp_makeConstraints { make in
             make.bottom.equalTo(-34)
             make.right.equalTo(self).offset(-leftSpace)
@@ -83,10 +94,12 @@ extension BannerView {
         let colors = [color1, color2, color3, color4]
 
         let locations: [NSNumber] = [0, 0.2, 0.5, 1.0]
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.gradientView.bounds
         gradientLayer.colors = colors
         gradientLayer.locations = locations
-        gradientView.layer.insertSublayer(gradientLayer, atIndex: 0)
-        self.addSubview(gradientView)
+        self.gradientView.layer.insertSublayer(gradientLayer, atIndex: 0)
     }
     
 }

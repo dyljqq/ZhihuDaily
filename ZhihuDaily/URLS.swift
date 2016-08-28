@@ -13,4 +13,9 @@ private let prefix = "http://news-at.zhihu.com/api/4/"
 struct URLS {
     static let start_image_url = prefix + "start-image/\(Int(resolutionRate.width))*\(Int(resolutionRate.height))"
     static let new_story_url = prefix + "news/latest"
+    
+    // get the old news
+    static func old_news_url(suffix: String)-> String {
+        return prefix + "news/before/" + suffix
+    }
 }

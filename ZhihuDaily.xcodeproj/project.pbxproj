@@ -21,6 +21,7 @@
 		73AEDC121D70127600BDDBCA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDC111D70127600BDDBCA /* MainViewController.swift */; };
 		73AEDC361D70AA1200BDDBCA /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AEDC351D70AA1200BDDBCA /* Kingfisher.framework */; };
 		73AEDC391D70ADE800BDDBCA /* LauchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDC381D70ADE800BDDBCA /* LauchViewController.swift */; };
+		73AEDC3B1D72B5D300BDDBCA /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AEDC3A1D72B5D300BDDBCA /* SwiftDate.framework */; };
 		73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B82B071D6EE6F100CB9634 /* Extension.swift */; };
 		73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5BECF1D6AF089006089F3 /* AppDelegate.swift */; };
 		73C5BED51D6AF089006089F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5BED31D6AF089006089F3 /* Main.storyboard */; };
@@ -29,8 +30,6 @@
 		73CA2D571D6AF5D6009DD62A /* URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D561D6AF5D6009DD62A /* URLS.swift */; };
 		73CA2D591D6AF877009DD62A /* DailyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D581D6AF877009DD62A /* DailyRequest.swift */; };
 		73CA2D5D1D6AFC7E009DD62A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CA2D5C1D6AFC7E009DD62A /* Alamofire.framework */; };
-		73CA2D5F1D6AFD16009DD62A /* Elaine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CA2D5E1D6AFD16009DD62A /* Elaine.framework */; };
-		73CA2D611D6B0A0B009DD62A /* Dyljqq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CA2D601D6B0A0B009DD62A /* Dyljqq.framework */; };
 		73CA2D631D6BEDCE009DD62A /* StartImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D621D6BEDCE009DD62A /* StartImageView.swift */; };
 		73CA2D661D6BEEA6009DD62A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D651D6BEEA6009DD62A /* Util.swift */; };
 		73CA2D681D6BF21E009DD62A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CA2D671D6BF21E009DD62A /* SnapKit.framework */; };
@@ -63,6 +62,7 @@
 		73AEDC111D70127600BDDBCA /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		73AEDC351D70AA1200BDDBCA /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ZhihuDaily-dnniyxskakzdqgfwbbdfkyjvtkmu/Build/Products/Debug-iphonesimulator/Kingfisher/Kingfisher.framework"; sourceTree = "<group>"; };
 		73AEDC381D70ADE800BDDBCA /* LauchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauchViewController.swift; sourceTree = "<group>"; };
+		73AEDC3A1D72B5D300BDDBCA /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ZhihuDaily-dnniyxskakzdqgfwbbdfkyjvtkmu/Build/Products/Debug-iphonesimulator/SwiftDate/SwiftDate.framework"; sourceTree = "<group>"; };
 		73B82B071D6EE6F100CB9634 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		73C5BECC1D6AF088006089F3 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5BECF1D6AF089006089F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,10 +89,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73AEDC3B1D72B5D300BDDBCA /* SwiftDate.framework in Frameworks */,
 				73AEDC361D70AA1200BDDBCA /* Kingfisher.framework in Frameworks */,
 				73CA2D681D6BF21E009DD62A /* SnapKit.framework in Frameworks */,
-				73CA2D611D6B0A0B009DD62A /* Dyljqq.framework in Frameworks */,
-				73CA2D5F1D6AFD16009DD62A /* Elaine.framework in Frameworks */,
 				73CA2D5D1D6AFC7E009DD62A /* Alamofire.framework in Frameworks */,
 				CB9E10BBCE0592D55C7C9CDF /* Pods_ZhihuDaily.framework in Frameworks */,
 			);
@@ -257,6 +256,7 @@
 		97CE1D95516933D74EFDFC40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73AEDC3A1D72B5D300BDDBCA /* SwiftDate.framework */,
 				73AEDC351D70AA1200BDDBCA /* Kingfisher.framework */,
 				734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */,
 				73CA2D671D6BF21E009DD62A /* SnapKit.framework */,

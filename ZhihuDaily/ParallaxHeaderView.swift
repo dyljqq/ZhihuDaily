@@ -12,8 +12,6 @@ public class ParallaxHeaderView: UIView {
     
     public var scrollView: UIScrollView!
     
-    public var upperLimit: CGFloat = -154.0
-    
     class func parallaxHeader(subview subview: UIView, size: CGSize)-> ParallaxHeaderView {
         let headerView = ParallaxHeaderView(frame: CGRectMake(0, 0, size.width, size.height))
         headerView.initialHeader(subview)

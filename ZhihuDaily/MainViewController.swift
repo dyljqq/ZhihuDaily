@@ -27,15 +27,21 @@ class MainViewController: UIViewController {
     }()
     private var banners = [Story]()
     private var stories = [Story]()
+    private var oldStories = [[Story]]()
+    private var dates = [String]()
+    
+    private let dataQueue = dispatch_queue_create("com.dyljqq.zhihu.dataQueue", DISPATCH_QUEUE_SERIAL)
+    private let semaphore = dispatch_semaphore_create(1)
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectMake(0, -navigationBarHeight, screenSize.width, screenSize.height + navigationBarHeight))
+        let tableView = UITableView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height), style: .Grouped)
         tableView.backgroundColor = whiteColor
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(StoryCell.self, forCellReuseIdentifier: Constant.reuseIdentifier)
         tableView.tableFooterView = UIView()
+        tableView.hidden = true
         return tableView
     }()
     
@@ -72,6 +78,7 @@ class MainViewController: UIViewController {
                 self.setNavigation()
                 lauchImageView.alpha = 0.0
             }) { finished in
+                self.tableView.hidden = false
                 lauchImageView.removeFromSuperview()
             }
         })
@@ -106,19 +113,63 @@ extension MainViewController {
     }
     
     func getData() {
-        DailyRequest.sharedInstance.getNewStory { value in
-            print(value)
+        
+        dispatch_async(self.dataQueue) {
+            
+            dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+            self.getNewStories {
+                dispatch_semaphore_signal(self.semaphore)
+            }
+            
+            for index in 0..<10 {
+                dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+                self.getOldStories(-(index + 1)) {
+                    dispatch_semaphore_signal(self.semaphore)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+            
+        }
+        
+    }
+    
+    func getNewStories(callback: ()-> ()) {
+        // get new story
+        DailyRequest.sharedInstance.callback(URLString: URLS.new_story_url, successCallback: { value in
             guard let topStories = value["top_stories"] as? [[String: AnyObject]] else {
                 return
             }
-            guard let stories = value["stories"] else {
+            guard let stories = value["stories"] as? [[String : AnyObject]] else {
                 return
             }
             self.banners = self.convertStory(topStories)
             self.topBanner.reload()
-            self.stories = self.convertStory(stories as! [[String : AnyObject]])
-            self.tableView.reloadData()
-        }
+            
+            self.stories = self.convertStory(stories)
+            
+            callback()
+        })
+    }
+    
+    func getOldStories(diff: Int, callback: ()-> ()) {
+        DailyRequest.sharedInstance.callback(URLString: URLS.old_news_url(diff.days.fromNow.format(format: "yyyyMMdd")), successCallback: { value in
+            guard let stories = value["stories"] as? [[String : AnyObject]] else {
+                print("no old story in \((-1).days.fromNow.format(format: "yyyyMMdd"))")
+                return ;
+            }
+            let oldStories = self.convertStory(stories)
+            self.oldStories.append(oldStories)
+            
+            let dateString = value["date"] as! String
+            print("dateString: \(dateString)")
+            self.dates.append(dateString.dateString("yyyyMMdd"))
+            callback()
+            }, failureCallback: { error in
+               callback()
+        })
     }
     
     private func convertStory(stories: [[String: AnyObject]])-> [Story] {
@@ -168,20 +219,62 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1 + oldStories.count
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stories.count
+        if section == 0 {
+            return stories.count
+        } else {
+            return oldStories[section - 1].count
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0.01
+        }
+        return 30.0
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 {
+            return UIView()
+        }
+        
+        let view = UIView(frame: CGRectMake(0, 0, screenSize.width, 30))
+        view.backgroundColor = navigationColor
+        
+        let dateLabel = UILabel(frame: view.bounds)
+        dateLabel.text = dates[section - 1]
+        dateLabel.textColor = whiteColor
+        dateLabel.font = Font.font(size: 12)
+        dateLabel.textAlignment = .Center
+        view.addSubview(dateLabel)
+        
+        return view
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constant.reuseIdentifier, forIndexPath: indexPath) as! StoryCell
-        cell.updateStory(stories[indexPath.row])
+        cell.updateStory(self.handleCell(indexPath))
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return tableView.fd_heightForCellWithIdentifier(Constant.reuseIdentifier) { cell in
-            (cell as! StoryCell).updateStory(self.stories[indexPath.row])
+            (cell as! StoryCell).updateStory(self.handleCell(indexPath))
         }
+    }
+    
+    private func handleCell(indexPath: NSIndexPath)-> Story {
+        return indexPath.section == 0 ? stories[indexPath.row] : oldStories[indexPath.section - 1][indexPath.row]
     }
     
 }
