@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct ScrollPoint {
+    var start: Double = 0.0
+    var end: Double = 0.0
+}
+
 class MainViewController: UIViewController {
     
     struct Constant {
@@ -29,6 +34,7 @@ class MainViewController: UIViewController {
     private var stories = [Story]()
     private var oldStories = [[Story]]()
     private var dates = [String]()
+    private var scrollPoints = [ScrollPoint]()
     
     private let dataQueue = dispatch_queue_create("com.dyljqq.zhihu.dataQueue", DISPATCH_QUEUE_SERIAL)
     private let semaphore = dispatch_semaphore_create(1)
@@ -65,6 +71,7 @@ class MainViewController: UIViewController {
         self.view.addSubview(self.tableView)
         
         let headerView = ParallaxHeaderView.parallaxHeader(subview: self.topBanner, size: CGSizeMake(375, 154))
+        headerView.delegate = self
         self.tableView.tableHeaderView = headerView
         
         let lauchImageView = lauchViewController.view
@@ -150,6 +157,8 @@ extension MainViewController {
             
             self.stories = self.convertStory(stories)
             
+            self.scrollPoints.append(ScrollPoint(start: 120, end: 120 + 93 * Double(self.stories.count)))
+            
             callback()
         })
     }
@@ -164,8 +173,13 @@ extension MainViewController {
             self.oldStories.append(oldStories)
             
             let dateString = value["date"] as! String
-            print("dateString: \(dateString)")
             self.dates.append(dateString.dateString("yyyyMMdd"))
+            
+            let start = self.scrollPoints[abs(diff) - 1].end
+            let end = start + 93 * Double(self.oldStories.count)
+            self.scrollPoints.append(ScrollPoint(start: start, end: end))
+            
+            
             callback()
             }, failureCallback: { error in
                callback()
@@ -268,9 +282,10 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.fd_heightForCellWithIdentifier(Constant.reuseIdentifier) { cell in
-            (cell as! StoryCell).updateStory(self.handleCell(indexPath))
-        }
+//        return tableView.fd_heightForCellWithIdentifier(Constant.reuseIdentifier) { cell in
+//            (cell as! StoryCell).updateStory(self.handleCell(indexPath))
+//        }
+        return 93.0
     }
     
     private func handleCell(indexPath: NSIndexPath)-> Story {
@@ -285,15 +300,32 @@ extension MainViewController: UIScrollViewDelegate {
         let MAX: CGFloat = 90.0
         let header = self.tableView.tableHeaderView as! ParallaxHeaderView
         header.layoutView(offset: scrollView.contentOffset)
-        // up
-        if offsetY >= -navigationBarHeight {
+        if offsetY > -navigationBarHeight {
             let alpha = min(1, (navigationBarHeight + offsetY)/(navigationBarHeight + MAX))
             self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor.colorWithAlphaComponent(alpha))
+            
+            for (index, scrollPoint) in scrollPoints.enumerate() {
+                if index == 0 {
+                    self.title = "今日要闻"
+                } else {
+                    if offsetY >= CGFloat(scrollPoint.start) &&  offsetY <= CGFloat(scrollPoint.end){
+                        self.title = dates[index - 1]
+                    }
+                }
+            }
+            
         } else {
-            // down
+            // TODO
+            self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor.colorWithAlphaComponent(0))
         }
     }
     
+}
+
+extension MainViewController: ParallaxHeaderViewDelegate {
+    func stopScroll() {
+        self.tableView.contentOffset.y = -154
+    }
 }
 
 

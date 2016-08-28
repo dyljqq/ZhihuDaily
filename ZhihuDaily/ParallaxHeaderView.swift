@@ -8,9 +8,15 @@
 
 import UIKit
 
+@objc public protocol ParallaxHeaderViewDelegate {
+    func stopScroll()
+}
+
 public class ParallaxHeaderView: UIView {
     
     public var scrollView: UIScrollView!
+    
+    public weak var delegate: ParallaxHeaderViewDelegate?
     
     class func parallaxHeader(subview subview: UIView, size: CGSize)-> ParallaxHeaderView {
         let headerView = ParallaxHeaderView(frame: CGRectMake(0, 0, size.width, size.height))
@@ -28,7 +34,9 @@ public class ParallaxHeaderView: UIView {
     public func layoutView(offset offset: CGPoint) {
         let offsetY = offset.y
         if offsetY < -154 {
-            // TODO
+            if let delegate = delegate {
+                delegate.stopScroll()
+            }
         } else {
             var rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
             rect.origin.y += offsetY

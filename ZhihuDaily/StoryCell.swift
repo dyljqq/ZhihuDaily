@@ -39,10 +39,11 @@ public class StoryCell: UITableViewCell {
             make.right.equalTo(self.detailImageView.snp_left).offset(-10)
         }
         self.detailImageView.snp_makeConstraints {make in
-            make.width.height.equalTo(60).priority(999)
+            make.height.equalTo(60)
+            make.width.equalTo(75)
             make.centerY.equalTo(self.contentView)
             make.right.equalTo(self.contentView).offset(-leftSpace)
-            make.bottom.equalTo(self.contentView.snp_bottom).offset(-10)
+//            make.bottom.equalTo(self.contentView.snp_bottom).offset(-10)
         }
         super.layoutSubviews()
     }
