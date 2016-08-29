@@ -31,6 +31,10 @@ class MainViewController: UIViewController {
         view.backgroundColor = clearColor
         return view
     }()
+    private lazy var slideMenu: DYLSlideMenu = {
+        let slideMenu = DYLSlideMenu()
+        return slideMenu
+    }()
     
     private var storyRequest = StoryRequest()
     private var banners = [Story]()
@@ -71,6 +75,7 @@ class MainViewController: UIViewController {
         }
         
         self.view.addSubview(self.tableView)
+        self.view.addSubview(self.slideMenu)
         
         let headerView = ParallaxHeaderView.parallaxHeader(subview: self.topBanner, size: CGSizeMake(375, Constant.maxOffsetY))
         headerView.delegate = self
@@ -122,6 +127,7 @@ extension MainViewController {
     
     func showMenu() {
         // TODO
+        self.slideMenu.trigger = false
     }
     
     func getData(callback: (()-> ())?) {

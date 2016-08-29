@@ -36,6 +36,7 @@
 		73CA2D681D6BF21E009DD62A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CA2D671D6BF21E009DD62A /* SnapKit.framework */; };
 		73CA2D6A1D6BFC7F009DD62A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D691D6BFC7F009DD62A /* Color.swift */; };
 		73CA2D6C1D6BFDBF009DD62A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D6B1D6BFDBF009DD62A /* Font.swift */; };
+		73DFBE401D7433A8008E6711 /* DYLSlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFBE3F1D7433A8008E6711 /* DYLSlideMenu.swift */; };
 		CB9E10BBCE0592D55C7C9CDF /* Pods_ZhihuDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D427B9294581762DA5E91E /* Pods_ZhihuDaily.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		73CA2D671D6BF21E009DD62A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ZhihuDaily-dnniyxskakzdqgfwbbdfkyjvtkmu/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
 		73CA2D691D6BFC7F009DD62A /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		73CA2D6B1D6BFDBF009DD62A /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		73DFBE3F1D7433A8008E6711 /* DYLSlideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLSlideMenu.swift; sourceTree = "<group>"; };
 		A206D4D1692739515AEA34E3 /* Pods-ZhihuDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				734C3DE81D6D797C00B1029B /* DYLCarousel.swift */,
 				734C3DE41D6D401C00B1029B /* CircleProgressView.swift */,
 				734C3DED1D6D8CEE00B1029B /* DYLParallelView.swift */,
+				73DFBE3F1D7433A8008E6711 /* DYLSlideMenu.swift */,
 			);
 			name = weidget;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */,
 				734C3DE51D6D401C00B1029B /* CircleProgressView.swift in Sources */,
 				73CA2D6A1D6BFC7F009DD62A /* Color.swift in Sources */,
+				73DFBE401D7433A8008E6711 /* DYLSlideMenu.swift in Sources */,
 				73AEDBEC1D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m in Sources */,
 				73AEDBEB1D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */,
