@@ -44,6 +44,22 @@ public class DYLParallelView: UIView {
         }
     }
     
+    public var showTimer = true {
+        didSet {
+            if showTimer {
+                timer = NSTimer.scheduledTimerWithTimeInterval(timerDuration, target: self, selector: #selector(scrollBanners), userInfo: nil, repeats: true)
+            } else {
+                if timer.valid {
+                    timer.invalidate()
+                }
+            }
+        }
+    }
+    public var timer: NSTimer!
+    public var total = 0
+    public var currentIndex = 0
+    public var timerDuration = 5.0
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: self.bounds)
         scrollView.delegate = self
@@ -81,6 +97,22 @@ public class DYLParallelView: UIView {
         self.pageControl.bounds = CGRectMake(0, 0, 100, 34)
         
         reload()
+        showTimer = true
+    }
+    
+    deinit {
+        if timer.valid {
+            timer.invalidate()
+        }
+    }
+    
+    func scrollBanners() {
+        guard total > 0 else {
+            return
+        }
+        currentIndex = (currentIndex + 1) % total
+        scrollView.contentOffset.x = CGFloat(currentIndex) * scrollView.bounds.width
+        currentItem()
     }
     
     func reload() {
@@ -92,12 +124,12 @@ public class DYLParallelView: UIView {
             subview.removeFromSuperview()
         }
         
-        let count = datasource.numOfItemsInParallelView()
-        self.pageControl.numberOfPages = count
-        for i in 0 ..< count {
+        total = datasource.numOfItemsInParallelView()
+        self.pageControl.numberOfPages = total
+        for i in 0 ..< total {
             addItem(i)
         }
-        self.scrollView.contentSize = CGSizeMake(CGFloat(count) * self.frame.width, self.frame.height)
+        self.scrollView.contentSize = CGSizeMake(CGFloat(total) * self.frame.width, self.frame.height)
     }
     
     private func addItem(index: Int) {
@@ -131,6 +163,7 @@ extension DYLParallelView {
         let xFinal = index * scrollView.bounds.size.width
         scrollView.setContentOffset(CGPoint(x: xFinal, y: 0), animated: true)
         pageControl.currentPage = Int(index)
+        currentIndex = Int(index)
         self.delegate?.didMoveToItemAtIndex(Int(index))
     }
     

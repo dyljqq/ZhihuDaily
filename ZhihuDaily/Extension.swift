@@ -82,7 +82,7 @@ extension Int {
     func weekday()-> String {
         var  str = ""
         switch self {
-        case 0: str = "星期日"
+        case 7: str = "星期日"
         case 1: str = "星期一"
         case 2: str = "星期二"
         case 3: str = "星期三"

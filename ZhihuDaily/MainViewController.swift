@@ -8,20 +8,16 @@
 
 import UIKit
 
-struct ScrollPoint {
-    var start: Double = 0.0
-    var end: Double = 0.0
-}
-
 class MainViewController: UIViewController {
     
     struct Constant {
         static let reuseIdentifier = "StoryCell"
+        static let maxOffsetY: CGFloat = 154
     }
     
     private var lauchViewController: LauchViewController = LauchViewController()
     private lazy var topBanner: DYLParallelView = {
-        let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, 154))
+        let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, Constant.maxOffsetY))
         topBanner.delegate = self
         topBanner.datasource = self
         topBanner.selectedIndex = 0
@@ -30,14 +26,20 @@ class MainViewController: UIViewController {
         topBanner.autoresizesSubviews = true
         return topBanner
     }()
+    private lazy var titleView: TitleView = {
+        let view = TitleView(frame: CGRectMake(0, 0, 150, 25))
+        view.backgroundColor = clearColor
+        return view
+    }()
+    
+    private var storyRequest = StoryRequest()
     private var banners = [Story]()
     private var stories = [Story]()
     private var oldStories = [[Story]]()
     private var dates = [String]()
     private var scrollPoints = [ScrollPoint]()
-    
-    private let dataQueue = dispatch_queue_create("com.dyljqq.zhihu.dataQueue", DISPATCH_QUEUE_SERIAL)
-    private let semaphore = dispatch_semaphore_create(1)
+    private var dragging = true
+    private var trigger = false
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height), style: .Grouped)
@@ -70,7 +72,7 @@ class MainViewController: UIViewController {
         
         self.view.addSubview(self.tableView)
         
-        let headerView = ParallaxHeaderView.parallaxHeader(subview: self.topBanner, size: CGSizeMake(375, 154))
+        let headerView = ParallaxHeaderView.parallaxHeader(subview: self.topBanner, size: CGSizeMake(375, Constant.maxOffsetY))
         headerView.delegate = self
         self.tableView.tableHeaderView = headerView
         
@@ -90,7 +92,7 @@ class MainViewController: UIViewController {
             }
         })
         
-        getData()
+        getData(nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,96 +106,40 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     func setNavigation() {
-        self.title = "今日热闻"
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
-        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self, action: #selector(showMenu))
         left.tintColor = whiteColor
         navigationItem.setLeftBarButtonItem(left, animated: true)
+        
+        self.titleView.titleLabel.text = "今日热闻"
+        self.navigationItem.titleView = self.titleView
+        self.titleView.showCircleView = false
+        
     }
     
     func showMenu() {
         // TODO
     }
     
-    func getData() {
+    func getData(callback: (()-> ())?) {
         
-        dispatch_async(self.dataQueue) {
-            
-            dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
-            self.getNewStories {
-                dispatch_semaphore_signal(self.semaphore)
-            }
-            
-            for index in 0..<10 {
-                dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
-                self.getOldStories(-(index + 1)) {
-                    dispatch_semaphore_signal(self.semaphore)
-                }
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
-            }
-            
-        }
-        
-    }
-    
-    func getNewStories(callback: ()-> ()) {
-        // get new story
-        DailyRequest.sharedInstance.callback(URLString: URLS.new_story_url, successCallback: { value in
-            guard let topStories = value["top_stories"] as? [[String: AnyObject]] else {
-                return
-            }
-            guard let stories = value["stories"] as? [[String : AnyObject]] else {
-                return
-            }
-            self.banners = self.convertStory(topStories)
+        storyRequest.getData { banners, stories, oldStories, dates, scrollPoints in
+            self.banners = banners
             self.topBanner.reload()
             
-            self.stories = self.convertStory(stories)
-            
-            self.scrollPoints.append(ScrollPoint(start: 120, end: 120 + 93 * Double(self.stories.count)))
-            
-            callback()
-        })
-    }
-    
-    func getOldStories(diff: Int, callback: ()-> ()) {
-        DailyRequest.sharedInstance.callback(URLString: URLS.old_news_url(diff.days.fromNow.format(format: "yyyyMMdd")), successCallback: { value in
-            guard let stories = value["stories"] as? [[String : AnyObject]] else {
-                print("no old story in \((-1).days.fromNow.format(format: "yyyyMMdd"))")
-                return ;
+            self.stories = stories
+            self.oldStories = oldStories
+            self.dates = dates
+            self.scrollPoints = scrollPoints
+            self.tableView.reloadData()
+            if let callback = callback {
+                callback()
             }
-            let oldStories = self.convertStory(stories)
-            self.oldStories.append(oldStories)
-            
-            let dateString = value["date"] as! String
-            self.dates.append(dateString.dateString("yyyyMMdd"))
-            
-            let start = self.scrollPoints[abs(diff) - 1].end
-            let end = start + 93 * Double(self.oldStories.count)
-            self.scrollPoints.append(ScrollPoint(start: start, end: end))
-            
-            
-            callback()
-            }, failureCallback: { error in
-               callback()
-        })
-    }
-    
-    private func convertStory(stories: [[String: AnyObject]])-> [Story] {
-        var containers = [Story]()
-        for story in stories {
-            var model = Story()
-            model.convert(story)
-            containers.append(model)
         }
-        return containers
+        
     }
 }
 
@@ -210,7 +156,7 @@ extension MainViewController: DYLParallelDelegate {
 extension MainViewController: DYLParallelDatasource {
     
     func viewForItemAtIndex(parallelView: DYLParallelView, index: Int) -> UIView {
-        let bannerView = BannerView(frame: CGRectMake(0, 0, screenSize.width, 154))
+        let bannerView = BannerView(frame: CGRectMake(0, 0, screenSize.width, Constant.maxOffsetY))
         let imageURL = banners[index].image
         bannerView.update(imageURL!, content: banners[index].title)
         return bannerView
@@ -234,7 +180,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1 + oldStories.count
+        return (stories.count > 0 ? 1 : 0) + oldStories.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -300,7 +246,9 @@ extension MainViewController: UIScrollViewDelegate {
         let MAX: CGFloat = 90.0
         let header = self.tableView.tableHeaderView as! ParallaxHeaderView
         header.layoutView(offset: scrollView.contentOffset)
-        if offsetY > -navigationBarHeight {
+        if offsetY >= -navigationBarHeight {
+            dragging = true
+            self.titleView.showCircleView = false
             let alpha = min(1, (navigationBarHeight + offsetY)/(navigationBarHeight + MAX))
             self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor.colorWithAlphaComponent(alpha))
             
@@ -309,22 +257,53 @@ extension MainViewController: UIScrollViewDelegate {
                     self.title = "今日要闻"
                 } else {
                     if offsetY >= CGFloat(scrollPoint.start) &&  offsetY <= CGFloat(scrollPoint.end){
-                        self.title = dates[index - 1]
+                        self.titleView.titleLabel.text = dates[index - 1]
                     }
                 }
             }
             
         } else {
-            // TODO
+            
             self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor.colorWithAlphaComponent(0))
+            
+            let rate = (abs(offsetY) - navigationBarHeight) * 2
+            if rate <= 100 {
+                if !self.titleView.showCircleView {
+                    self.titleView.showCircleView = true
+                }
+                self.titleView.progress = Int(rate)
+            } else {
+                self.titleView.progress = 100
+                if !dragging {
+                    self.titleView.circleView.hidden = true
+                    self.titleView.showActivityIndicatorView = true
+                    self.titleView.activityView.startAnimating()
+                    dragging = true
+                    getData {
+                        self.titleView.activityView.stopAnimating()
+                        self.titleView.showActivityIndicatorView = false
+                        self.titleView.showCircleView = false
+                        self.trigger = false
+                    }
+                }
+            }
+            
         }
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        dragging = false
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        dragging = true
     }
     
 }
 
 extension MainViewController: ParallaxHeaderViewDelegate {
     func stopScroll() {
-        self.tableView.contentOffset.y = -154
+        self.tableView.contentOffset.y = -Constant.maxOffsetY
     }
 }
 

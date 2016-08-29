@@ -20,12 +20,12 @@ class DailyRequest {
         return DailyRequest()
     }()
     
-    func callback(URLString URLString: String,
+    class func callback(URLString URLString: String,
                             parameters: [[String: AnyObject]]? = nil,
                             successCallback: SuccessCallback,
                             failureCallback: FailureCallback? = nil) {
         print("URLString: \(URLString)\nparameters: \(parameters)")
-        Alamofire.request(method, URLString).responseJSON { response in
+        Alamofire.request(.GET, URLString).responseJSON { response in
             switch response.result {
             case .Success(let value):
                 print("response value: \(value)")

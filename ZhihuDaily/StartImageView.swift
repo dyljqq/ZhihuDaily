@@ -38,7 +38,8 @@ class StartImageView: UIView {
         progress.layer.borderColor = whiteColor.CGColor
         progress.layer.borderWidth = 1.0
         progress.layer.cornerRadius = cornerRadius
-        progress.layer.masksToBounds = true        
+        progress.layer.masksToBounds = true
+        progress.showBackgroundLayer = false
         return progress
     }()
     
@@ -96,7 +97,7 @@ extension StartImageView {
     
     // 初始化数据
     func setData() {
-        DailyRequest.sharedInstance.callback(URLString: URLS.start_image_url, successCallback: { value in
+        DailyRequest.callback(URLString: URLS.start_image_url, successCallback: { value in
             if let urlString = value["img"] as? String {
                 self.startImageView.kf_setImageWithURL(NSURL(string: urlString)!)
             }

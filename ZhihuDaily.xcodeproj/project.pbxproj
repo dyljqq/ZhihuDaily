@@ -13,6 +13,7 @@
 		734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DED1D6D8CEE00B1029B /* DYLParallelView.swift */; };
 		734C3DF11D6DA20E00B1029B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF01D6DA20E00B1029B /* Story.swift */; };
 		734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF31D6EB7FD00B1029B /* StoryCell.swift */; };
+		73AC850F1D73D148000B111A /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC850E1D73D148000B111A /* TitleView.swift */; };
 		73AEDBEB1D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDBE41D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m */; };
 		73AEDBEC1D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDBE61D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m */; };
 		73AEDBED1D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDBE81D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCell.m */; };
@@ -50,6 +51,7 @@
 		734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UITableView_FDTemplateLayoutCell.framework; path = "Pods/../build/Debug-iphoneos/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework"; sourceTree = "<group>"; };
 		734C3DF81D6EC74500B1029B /* ZhihuDaily-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-swift.h"; sourceTree = "<group>"; };
 		734C3DF91D6EC94300B1029B /* ZhihuDaily-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-Bridging-Header.h"; sourceTree = "<group>"; };
+		73AC850E1D73D148000B111A /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		73AEDBE31D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
 		73AEDBE41D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
 		73AEDBE51D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				734C3DEB1D6D7B3B00B1029B /* BannerView.swift */,
+				73AC850E1D73D148000B111A /* TitleView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */,
 				73AEDBEE1D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				73AEDC391D70ADE800BDDBCA /* LauchViewController.swift in Sources */,
+				73AC850F1D73D148000B111A /* TitleView.swift in Sources */,
 				73CA2D631D6BEDCE009DD62A /* StartImageView.swift in Sources */,
 				73AEDC121D70127600BDDBCA /* MainViewController.swift in Sources */,
 			);

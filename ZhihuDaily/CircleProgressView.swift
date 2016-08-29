@@ -10,11 +10,10 @@ import UIKit
 
 class CircleProgressView: UIView {
     
-    struct Constant {
-        static let lineWidth: CGFloat = 5.0
-        static let inset: CGFloat = 5.0
-        static let progressColor = whiteColor
-    }
+    var backgroundCircleColor = lightGrayColor
+    var progressColor = whiteColor
+    var inset: CGFloat = 5.0
+    var lineWidth: CGFloat = 5.0
     
     var progress: Int = 0 {
         didSet {
@@ -26,12 +25,24 @@ class CircleProgressView: UIView {
         }
     }
     
+    var frontProgress = 0
+    
     private let path = UIBezierPath()
     
-    private lazy var progressLayer = CAShapeLayer()
+    private var progressLayer = CAShapeLayer()
+    
+    private var backgroundLayer = CAShapeLayer()
+    
+    var showBackgroundLayer: Bool = false {
+        didSet {
+            self.backgroundLayer.hidden = !showBackgroundLayer
+        }
+    }
     
     init() {
         super.init(frame: CGRectZero)
+        self.showBackgroundLayer = false
+        self.backgroundColor = clearColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,12 +51,21 @@ class CircleProgressView: UIView {
     
     override func drawRect(rect: CGRect) {
         path.addArcWithCenter(CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds)),
-                              radius: bounds.size.width/2 - Constant.lineWidth - Constant.inset,
+                              radius: bounds.size.width/2 - lineWidth - inset,
                               startAngle: angleToRadian(-90), endAngle: angleToRadian(270), clockwise: true)
+        
+        self.backgroundLayer.frame = self.bounds
+        self.backgroundLayer.fillColor = clearColor.CGColor
+        self.backgroundLayer.strokeColor = self.backgroundCircleColor.CGColor
+        self.backgroundLayer.lineWidth = self.lineWidth
+        self.backgroundLayer.path = self.path.CGPath
+        self.backgroundLayer.strokeStart = 0
+        self.backgroundLayer.strokeEnd = 1.0
+        
         self.progressLayer.frame = bounds
         self.progressLayer.fillColor = clearColor.CGColor
-        self.progressLayer.strokeColor = Constant.progressColor.CGColor
-        self.progressLayer.lineWidth = Constant.lineWidth
+        self.progressLayer.strokeColor = progressColor.CGColor
+        self.progressLayer.lineWidth = lineWidth
         self.progressLayer.path = self.path.CGPath
         self.progressLayer.strokeStart = 0
         
@@ -53,6 +73,7 @@ class CircleProgressView: UIView {
     }
     
     private func setup() {
+        layer.addSublayer(self.backgroundLayer)
         layer.addSublayer(self.progressLayer)
     }
     
@@ -64,16 +85,18 @@ class CircleProgressView: UIView {
         }
     }
     
-    func setProgress(progress: Int, withDuration duration: Double) {
-        self.progress = progress
+    private func setProgress(progress: Int, withDuration duration: Double) {
         
+        self.progress = progress
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = duration
-        animation.fromValue = 0.0
-        animation.toValue = CGFloat(self.progress) / 100.0
+        animation.fromValue = CGFloat(frontProgress) / 100.0
+        animation.toValue = CGFloat(progress) / 100.0
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         self.progressLayer.strokeEnd = CGFloat(self.progress) / 100.0
         self.progressLayer.addAnimation(animation, forKey: "animateCircle")
+        
+        frontProgress = self.progress
     }
 }
 
