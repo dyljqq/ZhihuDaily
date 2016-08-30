@@ -65,6 +65,7 @@ class MainViewController: UIViewController {
     }
     
     func setup() {
+        
         self.navigationItem.titleView?.hidden = true
         
         // delete the bottom line
@@ -115,9 +116,12 @@ extension MainViewController {
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self, action: #selector(showMenu))
+        let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
         left.tintColor = whiteColor
         navigationItem.setLeftBarButtonItem(left, animated: true)
+        
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
         self.titleView.titleLabel.text = "今日热闻"
         self.navigationItem.titleView = self.titleView
@@ -127,7 +131,7 @@ extension MainViewController {
     
     func showMenu() {
         // TODO
-        self.slideMenu.trigger = false
+        
     }
     
     func getData(callback: (()-> ())?) {

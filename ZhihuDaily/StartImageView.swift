@@ -97,7 +97,7 @@ extension StartImageView {
     
     // 初始化数据
     func setData() {
-        DailyRequest.callback(URLString: URLS.start_image_url, successCallback: { value in
+        DailyRequest.get(URLString: URLS.start_image_url, successCallback: { value in
             if let urlString = value["img"] as? String {
                 self.startImageView.kf_setImageWithURL(NSURL(string: urlString)!)
             }

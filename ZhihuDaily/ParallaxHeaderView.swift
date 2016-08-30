@@ -18,8 +18,11 @@ public class ParallaxHeaderView: UIView {
     
     public weak var delegate: ParallaxHeaderViewDelegate?
     
+    public var maxContentOffset: CGFloat = -154.0
+    
     class func parallaxHeader(subview subview: UIView, size: CGSize)-> ParallaxHeaderView {
         let headerView = ParallaxHeaderView(frame: CGRectMake(0, 0, size.width, size.height))
+        headerView.maxContentOffset = size.height
         headerView.initialHeader(subview)
         return headerView
     }
@@ -33,7 +36,7 @@ public class ParallaxHeaderView: UIView {
     
     public func layoutView(offset offset: CGPoint) {
         let offsetY = offset.y
-        if offsetY < -154 {
+        if offsetY < -maxContentOffset {
             if let delegate = delegate {
                 delegate.stopScroll()
             }

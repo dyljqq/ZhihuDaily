@@ -13,6 +13,13 @@
 		734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DED1D6D8CEE00B1029B /* DYLParallelView.swift */; };
 		734C3DF11D6DA20E00B1029B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF01D6DA20E00B1029B /* Story.swift */; };
 		734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF31D6EB7FD00B1029B /* StoryCell.swift */; };
+		736EE4FF1D751F5B00C7834D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE4FE1D751F5B00C7834D /* Theme.swift */; };
+		736EE5011D754A9200C7834D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5001D754A9200C7834D /* MenuViewController.swift */; };
+		736EE5031D754BBE00C7834D /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5021D754BBE00C7834D /* ThemeCell.swift */; };
+		736EE5051D7558B700C7834D /* DYLSlideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5041D7558B700C7834D /* DYLSlideViewController.swift */; };
+		736EE5071D7563E000C7834D /* HomeThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5061D7563E000C7834D /* HomeThemeCell.swift */; };
+		736EE5091D7572FB00C7834D /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5081D7572FB00C7834D /* ThemeViewController.swift */; };
+		736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 736EE50C1D75919200C7834D /* SWRevealViewController.m */; };
 		73AC850F1D73D148000B111A /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC850E1D73D148000B111A /* TitleView.swift */; };
 		73AEDBEB1D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDBE41D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m */; };
 		73AEDBEC1D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDBE61D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m */; };
@@ -52,6 +59,14 @@
 		734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UITableView_FDTemplateLayoutCell.framework; path = "Pods/../build/Debug-iphoneos/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework"; sourceTree = "<group>"; };
 		734C3DF81D6EC74500B1029B /* ZhihuDaily-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-swift.h"; sourceTree = "<group>"; };
 		734C3DF91D6EC94300B1029B /* ZhihuDaily-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-Bridging-Header.h"; sourceTree = "<group>"; };
+		736EE4FE1D751F5B00C7834D /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		736EE5001D754A9200C7834D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		736EE5021D754BBE00C7834D /* ThemeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
+		736EE5041D7558B700C7834D /* DYLSlideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLSlideViewController.swift; sourceTree = "<group>"; };
+		736EE5061D7563E000C7834D /* HomeThemeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeThemeCell.swift; sourceTree = "<group>"; };
+		736EE5081D7572FB00C7834D /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
+		736EE50B1D75919200C7834D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		736EE50C1D75919200C7834D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		73AC850E1D73D148000B111A /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		73AEDBE31D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
 		73AEDBE41D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
@@ -138,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				734C3DF01D6DA20E00B1029B /* Story.swift */,
+				736EE4FE1D751F5B00C7834D /* Theme.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -146,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				734C3DF31D6EB7FD00B1029B /* StoryCell.swift */,
+				736EE5021D754BBE00C7834D /* ThemeCell.swift */,
+				736EE5061D7563E000C7834D /* HomeThemeCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -153,9 +171,19 @@
 		734C3DFA1D6ECA0E00B1029B /* FrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				736EE50A1D75919200C7834D /* SWRevealViewController */,
 				73AEDBE21D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCell */,
 			);
 			path = FrameWork;
+			sourceTree = "<group>";
+		};
+		736EE50A1D75919200C7834D /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				736EE50B1D75919200C7834D /* SWRevealViewController.h */,
+				736EE50C1D75919200C7834D /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		73AEDBE21D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCell */ = {
@@ -177,6 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				73AEDC381D70ADE800BDDBCA /* LauchViewController.swift */,
+				736EE5001D754A9200C7834D /* MenuViewController.swift */,
+				736EE5041D7558B700C7834D /* DYLSlideViewController.swift */,
+				736EE5081D7572FB00C7834D /* ThemeViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -406,16 +437,23 @@
 				73DFBE401D7433A8008E6711 /* DYLSlideMenu.swift in Sources */,
 				73AEDBEC1D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m in Sources */,
 				73AEDBEB1D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m in Sources */,
+				736EE4FF1D751F5B00C7834D /* Theme.swift in Sources */,
 				734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */,
 				73CA2D591D6AF877009DD62A /* DailyRequest.swift in Sources */,
 				73CA2D6C1D6BFDBF009DD62A /* Font.swift in Sources */,
+				736EE5051D7558B700C7834D /* DYLSlideViewController.swift in Sources */,
 				734C3DF11D6DA20E00B1029B /* Story.swift in Sources */,
 				73AEDC101D70122800BDDBCA /* ParallaxHeaderView.swift in Sources */,
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
+				736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */,
+				736EE5011D754A9200C7834D /* MenuViewController.swift in Sources */,
+				736EE5071D7563E000C7834D /* HomeThemeCell.swift in Sources */,
 				73CA2D571D6AF5D6009DD62A /* URLS.swift in Sources */,
 				734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */,
 				73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */,
 				73AEDBEE1D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				736EE5091D7572FB00C7834D /* ThemeViewController.swift in Sources */,
+				736EE5031D754BBE00C7834D /* ThemeCell.swift in Sources */,
 				73AEDC391D70ADE800BDDBCA /* LauchViewController.swift in Sources */,
 				73AC850F1D73D148000B111A /* TitleView.swift in Sources */,
 				73CA2D631D6BEDCE009DD62A /* StartImageView.swift in Sources */,

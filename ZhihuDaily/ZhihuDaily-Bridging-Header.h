@@ -10,5 +10,6 @@
 #define ZhihuDaily_Bridging_Header_h
 
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "SWRevealViewController.h"
 
 #endif /* ZhihuDaily_Bridging_Header_h */

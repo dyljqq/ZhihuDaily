@@ -14,13 +14,7 @@ typealias FailureCallback = (error: NSError)-> ()
 
 class DailyRequest {
     
-    var method: Alamofire.Method = .GET
-    
-    static let sharedInstance: DailyRequest = {
-        return DailyRequest()
-    }()
-    
-    class func callback(URLString URLString: String,
+    class func get(URLString URLString: String,
                             parameters: [[String: AnyObject]]? = nil,
                             successCallback: SuccessCallback,
                             failureCallback: FailureCallback? = nil) {

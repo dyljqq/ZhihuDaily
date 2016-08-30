@@ -14,17 +14,24 @@ import SwiftDate
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var slideVC: DYLSlideViewController!
     var navigationController: UINavigationController?
+    var mainNavigationVC: UINavigationController!
+    var themeNavigationVC: UINavigationController!
+    var revealViewController: SWRevealViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = clearColor
-        let main = MainViewController()
-        self.navigationController = UINavigationController(rootViewController: main)
+        themeNavigationVC = UINavigationController(rootViewController: ThemeViewController())
+        self.navigationController = UINavigationController(rootViewController: MainViewController())
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: whiteColor]
-        self.window?.rootViewController = self.navigationController
+        
+        revealViewController = SWRevealViewController.init(rearViewController: MenuViewController(), frontViewController: navigationController)
+        
+        self.window?.rootViewController = revealViewController
         self.window?.makeKeyAndVisible()
         
         UIApplication.sharedApplication().statusBarStyle = .LightContent

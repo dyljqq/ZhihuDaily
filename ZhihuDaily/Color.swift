@@ -17,6 +17,8 @@ let textGrayColor = RGB(175, green: 175, blue: 175)
 let fontColor = RGB(115, green: 115, blue: 115) // 偏深的字体颜色 通用
 let backColor = RGB(241, green: 241, blue: 241)
 let navigationColor = RGB(1, green: 131, blue: 209)
+let menuBackgroundColor = RGB(19, green: 26, blue: 32)
+
 let blackColor = UIColor.blackColor()
 let whiteColor = UIColor.whiteColor()
 let clearColor = UIColor.clearColor()

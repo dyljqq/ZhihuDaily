@@ -25,6 +25,7 @@ struct Story {
             self.image = self.images.count > 0 ? self.images[0] : ""
         }
     }
+    
 }
 
 typealias StoriesComplete = (banners: [Story], stories: [Story], oldStories: [[Story]], dates: [String], scrollPoints: [ScrollPoint])-> ()
@@ -79,7 +80,7 @@ class StoryRequest {
     
     func getNewStories(callback: ()-> ()) {
         // get new story
-        DailyRequest.callback(URLString: URLS.new_story_url, successCallback: { value in
+        DailyRequest.get(URLString: URLS.new_story_url, successCallback: { value in
             guard let topStories = value["top_stories"] as? [[String: AnyObject]] else {
                 print("no top_stories")
                 return
@@ -96,7 +97,7 @@ class StoryRequest {
     }
     
     func getOldStories(diff: Int, callback: ()-> ()) {
-        DailyRequest.callback(URLString: URLS.old_news_url(diff.days.fromNow.format(format: "yyyyMMdd")), successCallback: { value in
+        DailyRequest.get(URLString: URLS.old_news_url(diff.days.fromNow.format(format: "yyyyMMdd")), successCallback: { value in
             guard let stories = value["stories"] as? [[String : AnyObject]] else {
                 print("no old story in \((-1).days.fromNow.format(format: "yyyyMMdd"))")
                 return ;
@@ -117,7 +118,7 @@ class StoryRequest {
         })
     }
     
-    private func convertStory(stories: [[String: AnyObject]])-> [Story] {
+    func convertStory(stories: [[String: AnyObject]])-> [Story] {
         var containers = [Story]()
         for story in stories {
             var model = Story()

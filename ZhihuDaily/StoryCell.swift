@@ -43,7 +43,6 @@ public class StoryCell: UITableViewCell {
             make.width.equalTo(75)
             make.centerY.equalTo(self.contentView)
             make.right.equalTo(self.contentView).offset(-leftSpace)
-//            make.bottom.equalTo(self.contentView.snp_bottom).offset(-10)
         }
         super.layoutSubviews()
     }
