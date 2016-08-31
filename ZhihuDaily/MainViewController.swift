@@ -64,6 +64,16 @@ class MainViewController: UIViewController {
         setup()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        topBanner.showTimer = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        topBanner.showTimer = false
+    }
+    
     func setup() {
         
         self.navigationItem.titleView?.hidden = true

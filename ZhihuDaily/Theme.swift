@@ -33,11 +33,11 @@ struct Editor {
     var url: String!
     
     mutating func convert(dic: [String: AnyObject]) {
-        self.bio = "\(dic["bio"])" ?? ""
-        self.id = (dic["id"] as!NSNumber).integerValue ?? 0
-        self.avatar = "\(dic["avatar"])" ?? ""
-        self.name = "\(dic["name"])" ?? ""
-        self.url = "\(dic["url"])" ?? ""
+        self.bio = dic["bio"] as? String ?? ""
+        self.id = (dic["id"] as! NSNumber).integerValue ?? 0
+        self.avatar = dic["avatar"] as? String ?? ""
+        self.name = dic["name"] as? String ?? ""
+        self.url = dic["url"] as? String ?? ""
     }
 }
 
@@ -65,11 +65,11 @@ struct ThemeContent {
                 self.editors.append(model)
             }
         }
-        self.description = "\(dic["description"])"
-        self.background = "\(dic["background"])"
-        self.name = "\(dic["name"])"
-        self.image = "\(dic["image"])"
-        self.image_source = "\(dic["image_source"])"
+        self.description = dic["description"] as! String
+        self.background = dic["background"] as! String
+        self.name = dic["name"] as! String
+        self.image = dic["image"] as! String
+        self.image_source = dic["image_source"] as! String
     }
 }
 

@@ -44,23 +44,23 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        getData()
     }
     
     private func setup() {
+        
+        self.themes = appDelegate.themes
+        
         self.view.backgroundColor = menuBackgroundColor
         self.addGradientLayer()
         self.view.addSubview(self.tableView)
         self.view.addSubview(self.footerView)
         self.view.addSubview(self.gradientView)
+        
+        self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Top)
     }
     
-    func getData() {
-        ThemeRequest.getThemes { themes in
-            self.themes = themes
-            self.tableView.reloadData()
-            self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Top)
-        }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }
@@ -87,9 +87,13 @@ extension MenuViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {
-            self.revealViewController().pushFrontViewController(appDelegate.themeNavigationVC, animated: true)
+            self.revealViewController().pushFrontViewController(appDelegate.navigationController, animated: true)
         } else {
-            self.revealViewController().pushFrontViewController(appDelegate.mainNavigationVC, animated: true)
+            if let topVC = appDelegate.themeNavigationVC.topViewController as? ThemeViewController {
+                topVC.themeName = themes[indexPath.row].name
+                topVC.themeId = themes[indexPath.row].id
+                self.revealViewController().pushFrontViewController(appDelegate.themeNavigationVC, animated: true)
+            }
         }
     }
     

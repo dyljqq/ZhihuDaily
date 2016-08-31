@@ -10,19 +10,25 @@ import Foundation
 
 struct Story {
     var id: String!
-    var image: String!
+    var image: String! = ""
     var title: String!
     var type: Int!
     var images: [String]!
     
     mutating func convert(dic: [String: AnyObject]) {
-        self.id = "\(dic["id"])" ?? ""
-        self.image = (dic["image"] ?? "") as! String
-        self.title = (dic["title"] ?? "") as! String
-        self.type = (dic["type"] ?? 0) as! Int
-        self.images = dic["images"] as? Array ?? [String]()
-        if self.image == "" {
-            self.image = self.images.count > 0 ? self.images[0] : ""
+        self.id = "\((dic["id"] as! NSNumber).intValue)"
+        self.title = dic["title"] as! String
+        self.type = dic["type"] as! Int
+        
+        if let image = dic["image"] as? String {
+            self.image = image
+        }
+        
+        if let images = dic["images"] as? [String] {
+            self.images = images
+            if self.image == "" {
+                self.image = self.images.count > 0 ? self.images[0] : ""
+            }
         }
     }
     

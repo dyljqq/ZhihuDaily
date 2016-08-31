@@ -49,4 +49,22 @@ public class ParallaxHeaderView: UIView {
         }
     }
     
+    public func layoutWithThemeView(offset offset: CGPoint) {
+        let offsetY = offset.y
+        var frame = scrollView.frame
+        if offsetY > 0 {
+            frame.origin.y = offsetY
+            scrollView.frame = frame
+            self.clipsToBounds = false
+        } else if offsetY < -95 {
+            self.delegate?.stopScroll()
+        } else {
+            var rect = self.bounds
+            rect.origin.y += offsetY
+            rect.size.height -= offsetY
+            scrollView.frame = rect
+            self.clipsToBounds = false
+        }
+    }
+    
 }

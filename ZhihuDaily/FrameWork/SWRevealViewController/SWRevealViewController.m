@@ -644,8 +644,9 @@ const int FrontViewPositionNone = 0xff;
     _frontViewPosition = FrontViewPositionLeft;
     _rearViewPosition = FrontViewPositionLeft;
     _rightViewPosition = FrontViewPositionLeft;
-    //这里改动过
-    _rearViewRevealWidth = 225.0f;
+    
+    // altered
+    _rearViewRevealWidth = [UIScreen mainScreen].bounds.size.width / 2;
     _rearViewRevealOverdraw = 60.0f;
     _rearViewRevealDisplacement = 40.0f;
     _rightViewRevealWidth = 260.0f;

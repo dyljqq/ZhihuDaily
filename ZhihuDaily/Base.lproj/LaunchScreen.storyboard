@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,16 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="zhihuLaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="o8z-4x-G7O">
-                                <rect key="frame" x="-4" y="0.0" width="379" height="687"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhihuLaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="o8z-4x-G7O">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o8z-4x-G7O" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" constant="20" id="3L3-VV-z5c"/>
-                            <constraint firstItem="o8z-4x-G7O" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="QSW-UX-qrF"/>
-                            <constraint firstItem="o8z-4x-G7O" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-24" id="bhi-A8-HWr"/>
-                            <constraint firstItem="o8z-4x-G7O" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" constant="4" id="fk9-my-VIk"/>
+                            <constraint firstItem="o8z-4x-G7O" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="9u3-NV-0mW"/>
+                            <constraint firstItem="o8z-4x-G7O" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="FaG-hM-ZlR"/>
+                            <constraint firstItem="o8z-4x-G7O" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="XGs-kf-7Yx"/>
+                            <constraint firstItem="o8z-4x-G7O" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dNW-xs-0pE"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

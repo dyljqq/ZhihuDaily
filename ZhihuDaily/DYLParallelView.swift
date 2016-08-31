@@ -103,6 +103,7 @@ public class DYLParallelView: UIView {
     deinit {
         if timer.valid {
             timer.invalidate()
+            timer = nil
         }
     }
     

@@ -31,13 +31,13 @@ class TitleView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = whiteColor
-        label.font = Font.font(size: 14)
+        label.font = Font.font(size: 18)
         return label
     }()
     
     lazy var circleView: CircleProgressView = {
         let view = CircleProgressView()
-        view.layer.cornerRadius = 7.5
+        view.layer.cornerRadius = 9
         view.layer.masksToBounds = true
         view.showBackgroundLayer = true
         view.lineWidth = 1
@@ -63,15 +63,23 @@ class TitleView: UIView {
     private func setup() {
         
         self.activityView.hidden = true
-        self.backgroundColor = clearColor
+        self.backgroundColor = redColor
         
         self.addSubview(self.titleLabel)
         self.addSubview(self.circleView)
         self.addSubview(self.activityView)
         
-        self.circleView.frame = CGRectMake(5, 5, 15, 15)
-        self.titleLabel.frame = CGRectMake(25, 5, 100, 15)
-        self.activityView.frame = self.circleView.frame
+        self.titleLabel.snp_makeConstraints { make in
+            make.center.equalTo(self)
+        }
+        self.circleView.snp_makeConstraints { make in
+            make.right.equalTo(self.titleLabel.snp_left).offset(-5)
+            make.centerY.equalTo(self)
+            make.width.height.equalTo(18)
+        }
+        self.activityView.snp_makeConstraints { make in
+            make.edges.equalTo(self.circleView)
+        }
     }
     
 }

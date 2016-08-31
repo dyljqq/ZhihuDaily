@@ -31,6 +31,10 @@
 		73AEDC391D70ADE800BDDBCA /* LauchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEDC381D70ADE800BDDBCA /* LauchViewController.swift */; };
 		73AEDC3B1D72B5D300BDDBCA /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AEDC3A1D72B5D300BDDBCA /* SwiftDate.framework */; };
 		73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B82B071D6EE6F100CB9634 /* Extension.swift */; };
+		73BD80311D76AF0900109023 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD80301D76AF0900109023 /* NotificationKey.swift */; };
+		73BD80331D76C7D800109023 /* ThemeEditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD80321D76C7D800109023 /* ThemeEditorCell.swift */; };
+		73BD80351D76CE3000109023 /* EditorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD80341D76CE3000109023 /* EditorCell.swift */; };
+		73BD80371D76D00C00109023 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD80361D76D00C00109023 /* EditorViewController.swift */; };
 		73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C5BECF1D6AF089006089F3 /* AppDelegate.swift */; };
 		73C5BED51D6AF089006089F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C5BED31D6AF089006089F3 /* Main.storyboard */; };
 		73C5BED71D6AF089006089F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C5BED61D6AF089006089F3 /* Assets.xcassets */; };
@@ -82,6 +86,10 @@
 		73AEDC381D70ADE800BDDBCA /* LauchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauchViewController.swift; sourceTree = "<group>"; };
 		73AEDC3A1D72B5D300BDDBCA /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ZhihuDaily-dnniyxskakzdqgfwbbdfkyjvtkmu/Build/Products/Debug-iphonesimulator/SwiftDate/SwiftDate.framework"; sourceTree = "<group>"; };
 		73B82B071D6EE6F100CB9634 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		73BD80301D76AF0900109023 /* NotificationKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
+		73BD80321D76C7D800109023 /* ThemeEditorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeEditorCell.swift; sourceTree = "<group>"; };
+		73BD80341D76CE3000109023 /* EditorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCell.swift; sourceTree = "<group>"; };
+		73BD80361D76D00C00109023 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		73C5BECC1D6AF088006089F3 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C5BECF1D6AF089006089F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73C5BED41D6AF089006089F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +172,8 @@
 				734C3DF31D6EB7FD00B1029B /* StoryCell.swift */,
 				736EE5021D754BBE00C7834D /* ThemeCell.swift */,
 				736EE5061D7563E000C7834D /* HomeThemeCell.swift */,
+				73BD80321D76C7D800109023 /* ThemeEditorCell.swift */,
+				73BD80341D76CE3000109023 /* EditorCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -208,6 +218,7 @@
 				736EE5001D754A9200C7834D /* MenuViewController.swift */,
 				736EE5041D7558B700C7834D /* DYLSlideViewController.swift */,
 				736EE5081D7572FB00C7834D /* ThemeViewController.swift */,
+				73BD80361D76D00C00109023 /* EditorViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -286,6 +297,7 @@
 				73CA2D651D6BEEA6009DD62A /* Util.swift */,
 				73CA2D691D6BFC7F009DD62A /* Color.swift */,
 				73CA2D6B1D6BFDBF009DD62A /* Font.swift */,
+				73BD80301D76AF0900109023 /* NotificationKey.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -443,9 +455,12 @@
 				73CA2D6C1D6BFDBF009DD62A /* Font.swift in Sources */,
 				736EE5051D7558B700C7834D /* DYLSlideViewController.swift in Sources */,
 				734C3DF11D6DA20E00B1029B /* Story.swift in Sources */,
+				73BD80351D76CE3000109023 /* EditorCell.swift in Sources */,
 				73AEDC101D70122800BDDBCA /* ParallaxHeaderView.swift in Sources */,
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
 				736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */,
+				73BD80331D76C7D800109023 /* ThemeEditorCell.swift in Sources */,
+				73BD80311D76AF0900109023 /* NotificationKey.swift in Sources */,
 				736EE5011D754A9200C7834D /* MenuViewController.swift in Sources */,
 				736EE5071D7563E000C7834D /* HomeThemeCell.swift in Sources */,
 				73CA2D571D6AF5D6009DD62A /* URLS.swift in Sources */,
@@ -458,6 +473,7 @@
 				73AC850F1D73D148000B111A /* TitleView.swift in Sources */,
 				73CA2D631D6BEDCE009DD62A /* StartImageView.swift in Sources */,
 				73AEDC121D70127600BDDBCA /* MainViewController.swift in Sources */,
+				73BD80371D76D00C00109023 /* EditorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
