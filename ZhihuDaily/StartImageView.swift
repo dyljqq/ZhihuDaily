@@ -54,14 +54,16 @@ class StartImageView: UIView {
     }
     
     private func setup() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(startImageNotification(_:)), name: start_image_notification, object: nil)
+        
+        self.backgroundColor = blackColor
+        
         self.addSubview(startImageView)
         self.addSubview(backView)
         self.backView.addSubview(circleProgress)
         self.backView.addSubview(titleLabel)
         self.backView.addSubview(contentLabel)
-    }
-    
-    override func updateConstraints() {
+        
         startImageView.snp_makeConstraints { make in
             make.edges.equalTo(self)
         }
@@ -88,20 +90,27 @@ class StartImageView: UIView {
                 make.bottom.equalTo(self)
             }
         })
-        super.updateConstraints()
+    }
+    
+    func startImageNotification(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {
+            print("Start image: no user info...")
+            return
+        }
+        if let URLString = userInfo["startImageURL"] as? String {
+            self.startImageView.kf_setImageWithURL(NSURL(string: URLString)!)
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }
 
 extension StartImageView {
-    
     // 初始化数据
     func setData() {
-        DailyRequest.get(URLString: URLS.start_image_url, successCallback: { value in
-            if let urlString = value["img"] as? String {
-                self.startImageView.kf_setImageWithURL(NSURL(string: urlString)!)
-            }
-        })
         titleLabel.text = "知乎日报"
         contentLabel.text = "每天三次，每次7分钟"
         circleProgress.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))

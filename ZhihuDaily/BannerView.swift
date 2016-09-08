@@ -12,8 +12,7 @@ class BannerView: UIView {
     
     private lazy var bannerImageView: UIImageView = {
         let imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode = .ScaleAspectFill
-//        imageView.autoresizingMask = [.FlexibleBottomMargin, .FlexibleHeight, .FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleWidth]
+        imageView.contentMode = .ScaleToFill
         return imageView
     }()
     
@@ -45,7 +44,6 @@ class BannerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientView.frame = bounds
-        
         gradientView.layer.sublayers![0].removeFromSuperlayer()
         addGradientLayer()
         

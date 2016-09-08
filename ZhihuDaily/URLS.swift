@@ -24,4 +24,8 @@ struct URLS {
     static func theme_detail_url(suffix: String)-> String {
         return prefix + "theme/" + suffix
     }
+    
+    static func news_content_url(newId: String)-> String {
+        return prefix + "news/" + newId
+    }
 }

@@ -44,13 +44,16 @@ public class DYLParallelView: UIView {
         }
     }
     
-    public var showTimer = true {
+    public var showTimer = false {
         didSet {
             if showTimer {
-                timer = NSTimer.scheduledTimerWithTimeInterval(timerDuration, target: self, selector: #selector(scrollBanners), userInfo: nil, repeats: true)
+                if timer == nil {
+                    timer = NSTimer.scheduledTimerWithTimeInterval(timerDuration, target: self, selector: #selector(scrollBanners), userInfo: nil, repeats: true)
+                }
             } else {
                 if timer.valid {
                     timer.invalidate()
+                    timer = nil
                 }
             }
         }
@@ -158,7 +161,6 @@ extension DYLParallelView: UIScrollViewDelegate {
 
 // Helper
 extension DYLParallelView {
-    
     private func currentItem() {
         let index = round(scrollView.contentOffset.x / scrollView.bounds.size.width)
         let xFinal = index * scrollView.bounds.size.width

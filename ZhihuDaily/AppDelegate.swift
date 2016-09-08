@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var themeNavigationVC: UINavigationController!
     var revealViewController: SWRevealViewController?
     var themes = [Theme]()
+    
+    var startImageURL: String = ""
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -45,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 subview.hidden = true
             }
         }
+        
         getMenu()
+        getStartImageURL()
         
         return true
     }
@@ -54,6 +58,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ThemeRequest.getThemes { themes in
             self.themes = themes
         }
+    }
+    
+    func getStartImageURL() {
+        DailyRequest.get(URLString: URLS.start_image_url, successCallback: { value in
+            if let urlString = value["img"] as? String {
+                NSNotificationCenter.defaultCenter().postNotificationName(start_image_notification, object: nil, userInfo: ["startImageURL": urlString])
+            }
+        })
     }
 
     func applicationWillResignActive(application: UIApplication) {

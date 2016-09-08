@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
         static let maxOffsetY: CGFloat = 154
     }
     
+    private var transition = RightTransition()
+    
     private var lauchViewController: LauchViewController = LauchViewController()
     private lazy var topBanner: DYLParallelView = {
         let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, Constant.maxOffsetY))
@@ -64,8 +66,8 @@ class MainViewController: UIViewController {
         setup()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         topBanner.showTimer = true
     }
     
@@ -104,11 +106,12 @@ class MainViewController: UIViewController {
                 lauchImageView.alpha = 0.0
             }) { finished in
                 self.tableView.hidden = false
-                lauchImageView.removeFromSuperview()
             }
         })
         
-        getData(nil)
+        getData {
+            lauchImageView.removeFromSuperview()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -193,6 +196,16 @@ extension MainViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         // TODO
+        var data = Story()
+        if indexPath.section == 0 {
+            data = stories[indexPath.row]
+        } else {
+            data = oldStories[indexPath.section - 1][indexPath.row]
+        }
+        let contentViewController = ContentViewController()
+        contentViewController.URLString = URLS.news_content_url(data.id)
+        contentViewController.transitioningDelegate = self
+        self.presentViewController(contentViewController, animated: true, completion: nil)
     }
     
 }
@@ -324,6 +337,18 @@ extension MainViewController: UIScrollViewDelegate {
 extension MainViewController: ParallaxHeaderViewDelegate {
     func stopScroll() {
         self.tableView.contentOffset.y = -Constant.maxOffsetY
+    }
+}
+
+extension MainViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = true
+        return transition
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }
 

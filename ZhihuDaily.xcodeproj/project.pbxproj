@@ -48,6 +48,9 @@
 		73CA2D6A1D6BFC7F009DD62A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D691D6BFC7F009DD62A /* Color.swift */; };
 		73CA2D6C1D6BFDBF009DD62A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CA2D6B1D6BFDBF009DD62A /* Font.swift */; };
 		73DFBE401D7433A8008E6711 /* DYLSlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFBE3F1D7433A8008E6711 /* DYLSlideMenu.swift */; };
+		73E3CCFD1D81417A002FD27F /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CCFC1D81417A002FD27F /* ContentViewController.swift */; };
+		73E3CCFF1D81524C002FD27F /* RightTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CCFE1D81524C002FD27F /* RightTransition.swift */; };
+		73E3CD011D816B9F002FD27F /* FooterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD001D816B9F002FD27F /* FooterBar.swift */; };
 		CB9E10BBCE0592D55C7C9CDF /* Pods_ZhihuDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D427B9294581762DA5E91E /* Pods_ZhihuDaily.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +111,9 @@
 		73CA2D691D6BFC7F009DD62A /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		73CA2D6B1D6BFDBF009DD62A /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		73DFBE3F1D7433A8008E6711 /* DYLSlideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLSlideMenu.swift; sourceTree = "<group>"; };
+		73E3CCFC1D81417A002FD27F /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		73E3CCFE1D81524C002FD27F /* RightTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTransition.swift; sourceTree = "<group>"; };
+		73E3CD001D816B9F002FD27F /* FooterBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterBar.swift; sourceTree = "<group>"; };
 		A206D4D1692739515AEA34E3 /* Pods-ZhihuDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +159,7 @@
 			children = (
 				734C3DEB1D6D7B3B00B1029B /* BannerView.swift */,
 				73AC850E1D73D148000B111A /* TitleView.swift */,
+				73E3CD001D816B9F002FD27F /* FooterBar.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -219,6 +226,7 @@
 				736EE5041D7558B700C7834D /* DYLSlideViewController.swift */,
 				736EE5081D7572FB00C7834D /* ThemeViewController.swift */,
 				73BD80361D76D00C00109023 /* EditorViewController.swift */,
+				73E3CCFC1D81417A002FD27F /* ContentViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 				73CA2D691D6BFC7F009DD62A /* Color.swift */,
 				73CA2D6B1D6BFDBF009DD62A /* Font.swift */,
 				73BD80301D76AF0900109023 /* NotificationKey.swift */,
+				73E3CCFE1D81524C002FD27F /* RightTransition.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -445,10 +454,12 @@
 				73CA2D661D6BEEA6009DD62A /* Util.swift in Sources */,
 				734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */,
 				734C3DE51D6D401C00B1029B /* CircleProgressView.swift in Sources */,
+				73E3CD011D816B9F002FD27F /* FooterBar.swift in Sources */,
 				73CA2D6A1D6BFC7F009DD62A /* Color.swift in Sources */,
 				73DFBE401D7433A8008E6711 /* DYLSlideMenu.swift in Sources */,
 				73AEDBEC1D6FF15000BDDBCA /* UITableView+FDKeyedHeightCache.m in Sources */,
 				73AEDBEB1D6FF15000BDDBCA /* UITableView+FDIndexPathHeightCache.m in Sources */,
+				73E3CCFF1D81524C002FD27F /* RightTransition.swift in Sources */,
 				736EE4FF1D751F5B00C7834D /* Theme.swift in Sources */,
 				734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */,
 				73CA2D591D6AF877009DD62A /* DailyRequest.swift in Sources */,
@@ -460,6 +471,7 @@
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
 				736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */,
 				73BD80331D76C7D800109023 /* ThemeEditorCell.swift in Sources */,
+				73E3CCFD1D81417A002FD27F /* ContentViewController.swift in Sources */,
 				73BD80311D76AF0900109023 /* NotificationKey.swift in Sources */,
 				736EE5011D754A9200C7834D /* MenuViewController.swift in Sources */,
 				736EE5071D7563E000C7834D /* HomeThemeCell.swift in Sources */,

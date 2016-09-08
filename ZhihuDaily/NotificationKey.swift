@@ -10,3 +10,4 @@ import Foundation
 
 let story_notification = "story_notification"
 let menu_notification = "menu_notification"
+let start_image_notification = "start_image_notification"

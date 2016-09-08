@@ -43,10 +43,9 @@ class ThemeViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var navImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, screenSize.width, navigationBarHeight))
-        return imageView
-    }()
+    var navImageView = UIImageView(frame: CGRectMake(0, 0, screenSize.width, navigationBarHeight))
+    
+    var headerView: ParallaxHeaderView?
     
     var themeContents: ThemeContent = ThemeContent()
     var stories = [Story]()
@@ -70,8 +69,8 @@ class ThemeViewController: UIViewController {
         
         setNavigation()
         
-        let headerView = ParallaxHeaderView.parallaxHeader(subview: self.navImageView, size: CGSizeMake(screenSize.width, Constant.maxOffsetY))
-        headerView.delegate = self
+        self.headerView = ParallaxHeaderView.parallaxHeader(subview: self.navImageView, size: CGSizeMake(screenSize.width, Constant.maxOffsetY), type: HeaderType.Blur)
+        self.headerView!.delegate = self
         self.tableView.tableHeaderView = headerView
         
         self.view.addSubview(self.tableView)
@@ -80,7 +79,7 @@ class ThemeViewController: UIViewController {
     private func setNavigation() {
         self.navigationItem.titleView = self.titleView
         
-        let left = UIBarButtonItem(image: UIImage(named: "leftArrow"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
+        let left = UIBarButtonItem(image: UIImage(named: "left_back"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
         left.tintColor = whiteColor
         navigationItem.setLeftBarButtonItem(left, animated: true)
         
@@ -93,7 +92,13 @@ class ThemeViewController: UIViewController {
         ThemeRequest.getThemeContent(themeId) { themeContent in
             self.themeContents = themeContent
             self.stories = themeContent.stories
-            self.navImageView.kf_setImageWithURL(NSURL(string: themeContent.image))
+            self.navImageView.kf_setImageWithURL(NSURL(string: themeContent.background), placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: { image, _, _, _ in
+                if let image = image {
+                    if let headerView = self.headerView {
+                        headerView.blurImage = image
+                    }
+                }
+            })
             self.tableView.reloadData()
             
             if let callback = callback {

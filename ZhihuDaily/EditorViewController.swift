@@ -42,17 +42,8 @@ class EditorViewController: UIViewController {
     
     func setup() {
         self.title = "主编"
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor)
         self.view.addSubview(tableView)
-        
-        let left = UIBarButtonItem(image: UIImage(named: "leftArrow"), style: .Plain, target: self, action: #selector(backAction))
-        left.tintColor = whiteColor
-        navigationItem.setLeftBarButtonItem(left, animated: true)
-    }
-    
-    func backAction() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.setLeftNavigationItemBack()
     }
     
 }
