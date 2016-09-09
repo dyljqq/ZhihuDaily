@@ -14,6 +14,12 @@ class FooterBar: UIView {
     
     var callback: (index: Int)-> () = {_ in }
     
+    private lazy var line: UIView = {
+        let line = UIView(frame: CGRectMake(0, 0, screenSize.width, 0.5))
+        line.backgroundColor = lineColor
+        return line
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -25,6 +31,7 @@ class FooterBar: UIView {
     
     private func setup() {
         backgroundColor = whiteColor
+        addSubview(self.line)
         
         let icons = ["left_back", "left_back", "heart_unselected", "share", "comment"]
         for index in 0..<icons.count {

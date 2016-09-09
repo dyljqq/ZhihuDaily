@@ -20,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var revealViewController: SWRevealViewController?
     var themes = [Theme]()
     
+    var storyRequest = StoryRequest()
+    var banners = [Story]()
+    var stories = [Story]()
+    var oldStories = [[Story]]()
+    var dates = [String]()
+    var scrollPoints = [ScrollPoint]()
+    
     var startImageURL: String = ""
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -47,11 +54,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 subview.hidden = true
             }
         }
-        
+        getData(nil)
         getMenu()
         getStartImageURL()
         
         return true
+    }
+    
+    func getData(callback: (()-> ())?) {
+        storyRequest.getData { banners, stories, oldStories, dates, scrollPoints in
+            self.banners = banners
+            self.stories = stories
+            self.oldStories = oldStories
+            self.dates = dates
+            self.scrollPoints = scrollPoints
+            NSNotificationCenter.defaultCenter().postNotificationName(story_notification, object: nil)
+            if let callback = callback {
+                callback()
+            }
+        }
+        
     }
     
     func getMenu() {

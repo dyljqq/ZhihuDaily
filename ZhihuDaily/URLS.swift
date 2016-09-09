@@ -28,4 +28,12 @@ struct URLS {
     static func news_content_url(newId: String)-> String {
         return prefix + "news/" + newId
     }
+    
+    static func news_long_comment(newId: String)-> String {
+        return prefix + "story/" + newId + "/long-comments"
+    }
+    
+    static func news_short_comment(newId: String)-> String {
+        return prefix + "story/" + newId + "/short-comments"
+    }
 }

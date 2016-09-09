@@ -63,7 +63,6 @@ class TitleView: UIView {
     private func setup() {
         
         self.activityView.hidden = true
-        self.backgroundColor = redColor
         
         self.addSubview(self.titleLabel)
         self.addSubview(self.circleView)

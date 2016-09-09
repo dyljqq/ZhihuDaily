@@ -12,12 +12,12 @@ func RGB(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat? = 1.0)-> U
     return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha ?? 1.0)
 }
 
-
 let textGrayColor = RGB(175, green: 175, blue: 175)
 let fontColor = RGB(115, green: 115, blue: 115) // 偏深的字体颜色 通用
 let backColor = RGB(241, green: 241, blue: 241)
 let navigationColor = RGB(1, green: 131, blue: 209)
 let menuBackgroundColor = RGB(19, green: 26, blue: 32)
+let lineColor = RGB(204, green: 204, blue: 204)
 
 let blackColor = UIColor.blackColor()
 let whiteColor = UIColor.whiteColor()

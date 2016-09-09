@@ -27,7 +27,6 @@ public class DYLSlideMenu: UIView {
     private var displayLink: CADisplayLink?
     private lazy var helperView: UIView = {
         let view = UIView(frame: CGRectMake(-self.helperWidth, 0, self.helperWidth, self.helperWidth))
-        view.backgroundColor = redColor
         view.hidden = true
         return view
     }()

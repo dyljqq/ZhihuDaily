@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7330CDE11D82B07F0077A8E6 /* PraiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330CDE01D82B07F0077A8E6 /* PraiseView.swift */; };
 		734C3DE51D6D401C00B1029B /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DE41D6D401C00B1029B /* CircleProgressView.swift */; };
 		734C3DE91D6D797C00B1029B /* DYLCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DE81D6D797C00B1029B /* DYLCarousel.swift */; };
 		734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DEB1D6D7B3B00B1029B /* BannerView.swift */; };
@@ -51,12 +52,17 @@
 		73E3CCFD1D81417A002FD27F /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CCFC1D81417A002FD27F /* ContentViewController.swift */; };
 		73E3CCFF1D81524C002FD27F /* RightTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CCFE1D81524C002FD27F /* RightTransition.swift */; };
 		73E3CD011D816B9F002FD27F /* FooterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD001D816B9F002FD27F /* FooterBar.swift */; };
+		73E3CD031D825097002FD27F /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD021D825097002FD27F /* RefreshView.swift */; };
+		73E3CD051D8295FA002FD27F /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD041D8295FA002FD27F /* CommentViewController.swift */; };
+		73E3CD071D8297FD002FD27F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD061D8297FD002FD27F /* Comment.swift */; };
+		73E3CD091D829B00002FD27F /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD081D829B00002FD27F /* CommentCell.swift */; };
 		CB9E10BBCE0592D55C7C9CDF /* Pods_ZhihuDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D427B9294581762DA5E91E /* Pods_ZhihuDaily.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		42D427B9294581762DA5E91E /* Pods_ZhihuDaily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZhihuDaily.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFFBD821902AB51C25F535E /* Pods-ZhihuDaily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.debug.xcconfig"; sourceTree = "<group>"; };
+		7330CDE01D82B07F0077A8E6 /* PraiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PraiseView.swift; sourceTree = "<group>"; };
 		734C3DE41D6D401C00B1029B /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		734C3DE81D6D797C00B1029B /* DYLCarousel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLCarousel.swift; sourceTree = "<group>"; };
 		734C3DEB1D6D7B3B00B1029B /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
@@ -114,6 +120,10 @@
 		73E3CCFC1D81417A002FD27F /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		73E3CCFE1D81524C002FD27F /* RightTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTransition.swift; sourceTree = "<group>"; };
 		73E3CD001D816B9F002FD27F /* FooterBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterBar.swift; sourceTree = "<group>"; };
+		73E3CD021D825097002FD27F /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		73E3CD041D8295FA002FD27F /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		73E3CD061D8297FD002FD27F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		73E3CD081D829B00002FD27F /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		A206D4D1692739515AEA34E3 /* Pods-ZhihuDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +170,8 @@
 				734C3DEB1D6D7B3B00B1029B /* BannerView.swift */,
 				73AC850E1D73D148000B111A /* TitleView.swift */,
 				73E3CD001D816B9F002FD27F /* FooterBar.swift */,
+				73E3CD021D825097002FD27F /* RefreshView.swift */,
+				7330CDE01D82B07F0077A8E6 /* PraiseView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -169,6 +181,7 @@
 			children = (
 				734C3DF01D6DA20E00B1029B /* Story.swift */,
 				736EE4FE1D751F5B00C7834D /* Theme.swift */,
+				73E3CD061D8297FD002FD27F /* Comment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,6 +194,7 @@
 				736EE5061D7563E000C7834D /* HomeThemeCell.swift */,
 				73BD80321D76C7D800109023 /* ThemeEditorCell.swift */,
 				73BD80341D76CE3000109023 /* EditorCell.swift */,
+				73E3CD081D829B00002FD27F /* CommentCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -227,6 +241,7 @@
 				736EE5081D7572FB00C7834D /* ThemeViewController.swift */,
 				73BD80361D76D00C00109023 /* EditorViewController.swift */,
 				73E3CCFC1D81417A002FD27F /* ContentViewController.swift */,
+				73E3CD041D8295FA002FD27F /* CommentViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -464,24 +479,29 @@
 				734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */,
 				73CA2D591D6AF877009DD62A /* DailyRequest.swift in Sources */,
 				73CA2D6C1D6BFDBF009DD62A /* Font.swift in Sources */,
+				73E3CD091D829B00002FD27F /* CommentCell.swift in Sources */,
 				736EE5051D7558B700C7834D /* DYLSlideViewController.swift in Sources */,
 				734C3DF11D6DA20E00B1029B /* Story.swift in Sources */,
 				73BD80351D76CE3000109023 /* EditorCell.swift in Sources */,
 				73AEDC101D70122800BDDBCA /* ParallaxHeaderView.swift in Sources */,
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
 				736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */,
+				7330CDE11D82B07F0077A8E6 /* PraiseView.swift in Sources */,
 				73BD80331D76C7D800109023 /* ThemeEditorCell.swift in Sources */,
 				73E3CCFD1D81417A002FD27F /* ContentViewController.swift in Sources */,
 				73BD80311D76AF0900109023 /* NotificationKey.swift in Sources */,
 				736EE5011D754A9200C7834D /* MenuViewController.swift in Sources */,
 				736EE5071D7563E000C7834D /* HomeThemeCell.swift in Sources */,
+				73E3CD051D8295FA002FD27F /* CommentViewController.swift in Sources */,
 				73CA2D571D6AF5D6009DD62A /* URLS.swift in Sources */,
 				734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */,
 				73C5BED01D6AF089006089F3 /* AppDelegate.swift in Sources */,
 				73AEDBEE1D6FF15000BDDBCA /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				73E3CD031D825097002FD27F /* RefreshView.swift in Sources */,
 				736EE5091D7572FB00C7834D /* ThemeViewController.swift in Sources */,
 				736EE5031D754BBE00C7834D /* ThemeCell.swift in Sources */,
 				73AEDC391D70ADE800BDDBCA /* LauchViewController.swift in Sources */,
+				73E3CD071D8297FD002FD27F /* Comment.swift in Sources */,
 				73AC850F1D73D148000B111A /* TitleView.swift in Sources */,
 				73CA2D631D6BEDCE009DD62A /* StartImageView.swift in Sources */,
 				73AEDC121D70127600BDDBCA /* MainViewController.swift in Sources */,

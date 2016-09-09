@@ -63,6 +63,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = whiteColor
+        self.navigationController?.navigationBar.translucent = true
         setup()
     }
     
@@ -74,9 +75,11 @@ class MainViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         topBanner.showTimer = false
+        self.navigationController?.navigationBarHidden = true
     }
     
     func setup() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(getStory), name: story_notification, object: nil)
         
         self.navigationItem.titleView?.hidden = true
         
@@ -105,18 +108,31 @@ class MainViewController: UIViewController {
                 self.setNavigation()
                 lauchImageView.alpha = 0.0
             }) { finished in
+                lauchImageView.removeFromSuperview()
                 self.tableView.hidden = false
             }
         })
         
-        getData {
-            lauchImageView.removeFromSuperview()
-        }
+    }
+    
+    func getStory() {
+        self.banners = appDelegate.banners
+        self.topBanner.reload()
+        
+        self.stories = appDelegate.stories
+        self.oldStories = appDelegate.oldStories
+        self.dates = appDelegate.dates
+        self.scrollPoints = appDelegate.scrollPoints
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
 
@@ -127,7 +143,7 @@ extension MainViewController {
     func setNavigation() {
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
         left.tintColor = whiteColor
@@ -139,29 +155,6 @@ extension MainViewController {
         self.titleView.titleLabel.text = "今日热闻"
         self.navigationItem.titleView = self.titleView
         self.titleView.showCircleView = false
-        
-    }
-    
-    func showMenu() {
-        // TODO
-        
-    }
-    
-    func getData(callback: (()-> ())?) {
-        
-        storyRequest.getData { banners, stories, oldStories, dates, scrollPoints in
-            self.banners = banners
-            self.topBanner.reload()
-            
-            self.stories = stories
-            self.oldStories = oldStories
-            self.dates = dates
-            self.scrollPoints = scrollPoints
-            self.tableView.reloadData()
-            if let callback = callback {
-                callback()
-            }
-        }
         
     }
 }
@@ -204,8 +197,10 @@ extension MainViewController: UITableViewDelegate {
         }
         let contentViewController = ContentViewController()
         contentViewController.URLString = URLS.news_content_url(data.id)
-        contentViewController.transitioningDelegate = self
-        self.presentViewController(contentViewController, animated: true, completion: nil)
+        contentViewController.indexPath = indexPath
+//        contentViewController.transitioningDelegate = self
+//        self.presentViewController(contentViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(contentViewController, animated: true)
     }
     
 }
@@ -312,7 +307,8 @@ extension MainViewController: UIScrollViewDelegate {
                     self.titleView.showActivityIndicatorView = true
                     self.titleView.activityView.startAnimating()
                     dragging = true
-                    getData {
+                    
+                    appDelegate.getData {
                         self.titleView.activityView.stopAnimating()
                         self.titleView.showActivityIndicatorView = false
                         self.titleView.showCircleView = false
