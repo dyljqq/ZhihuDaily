@@ -24,8 +24,15 @@ class ContentViewController: UIViewController {
         return refreshView
     }()
     
+    lazy var statusBarView: UIView = {
+        let view = UIView(frame: CGRectMake(0, 0, screenSize.width, 0))
+        view.backgroundColor = whiteColor
+        return view
+    }()
+    
     lazy var webView: UIWebView = {
-        let webView = UIWebView(frame: CGRectMake(0, -20, screenSize.width, screenSize.height + 20 - 44))
+        let webView = UIWebView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height - 44))
+        webView.backgroundColor = whiteColor
         webView.delegate = self
         webView.scrollView.delegate = self
         webView.scrollView.showsVerticalScrollIndicator = false
@@ -49,6 +56,8 @@ class ContentViewController: UIViewController {
     
     var transition = RightTransition()
     
+    var isStory = true // story or theme
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -56,6 +65,7 @@ class ContentViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -65,13 +75,18 @@ class ContentViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = whiteColor
+        self.view.addSubview(self.statusBarView)
         self.view.addSubview(self.webView)
         self.view.addSubview(self.footerBar)
         
-        headView = ParallaxHeaderView.parallaxHeader(subview: bannerView, size: bannerView.frame.size, type: .WebView)
-        headView.delegate = self
-        headView.maxContentOffset = 85
-        self.webView.scrollView.addSubview(headView)
+        if isStory {
+            headView = ParallaxHeaderView.parallaxHeader(subview: bannerView, size: bannerView.frame.size, type: .WebView)
+            headView.delegate = self
+            headView.maxContentOffset = 85
+            self.webView.scrollView.addSubview(headView)
+        } else {
+            refreshView.contentLabel.textColor = textGrayColor
+        }
         self.webView.scrollView.addSubview(refreshView)
         
         getData()
@@ -85,6 +100,7 @@ class ContentViewController: UIViewController {
             }
         }
         alterRefreshView()
+        print("frame: \(self.view.frame), webview frame: \(self.webView.frame)")
     }
     
     private func getData() {
@@ -124,7 +140,7 @@ class ContentViewController: UIViewController {
     }
     
     func loadNewStory(type: Direction) {
-
+        
         alterRefreshView()
         var page = 1
         var distance: CGFloat = 0
@@ -134,16 +150,18 @@ class ContentViewController: UIViewController {
             page = -1
         default: distance = screenSize.height
         }
-        guard let (ip, newID) = nextValue(page) else {
-           return
-        }
         
         let upTransform = CGAffineTransformMakeTranslation(0, distance)
         let downTransform = CGAffineTransformMakeTranslation(0, -distance)
         
+        guard let (ip, newID) = nextValue(page) else {
+            return
+        }
+        
         let toWebViewController = ContentViewController()
         toWebViewController.indexPath = ip
         toWebViewController.URLString = URLS.news_content_url(newID)
+        toWebViewController.isStory = isStory
         let toView = toWebViewController.view
         toView.frame = self.view.frame
         toView.transform = upTransform
@@ -165,13 +183,21 @@ class ContentViewController: UIViewController {
     
     private func nextValue(page: Int)-> (indexPath: NSIndexPath, newID: String)? {
         let ip = NSIndexPath(forRow: indexPath.row + page, inSection: indexPath.section)
-        if (ip.section == 0 && ip.row == -1) || (ip.section == appDelegate.oldStories.count && ip.row == appDelegate.oldStories[ip.section].count) {
-            return nil
-        } else if ip.row == appDelegate.stories.count || ip.row == appDelegate.oldStories[ip.section].count {
-            let indexP = NSIndexPath(forRow: 0, inSection: ip.section + 1)
-            return (indexP, indexP.section == 0 ? appDelegate.stories[indexP.row].id : appDelegate.oldStories[indexP.section][0].id)
+        if isStory {
+            if (ip.section == 0 && ip.row == -1) || (ip.section == appDelegate.oldStories.count && ip.row == appDelegate.oldStories[ip.section].count) {
+                return nil
+            } else if ip.row == appDelegate.stories.count || ip.row == appDelegate.oldStories[ip.section].count {
+                let indexP = NSIndexPath(forRow: 0, inSection: ip.section + 1)
+                return (indexP, indexP.section == 0 ? appDelegate.stories[indexP.row].id : appDelegate.oldStories[indexP.section][0].id)
+            } else {
+                return (ip, ip.section == 0 ? appDelegate.stories[ip.row].id : appDelegate.oldStories[ip.section][0].id)
+            }
         } else {
-            return (ip, ip.section == 0 ? appDelegate.stories[ip.row].id : appDelegate.oldStories[ip.section][0].id)
+            if ip.row == -1 || ip.row == appDelegate.themeContents.stories.count {
+                return nil
+            } else {
+                return (ip, appDelegate.themeContents.stories[ip.row].id)
+            }
         }
     }
     
@@ -179,12 +205,22 @@ class ContentViewController: UIViewController {
 
 extension ContentViewController: UIWebViewDelegate {
     
+    func webViewDidStartLoad(webView: UIWebView) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
+    
 }
 
 extension ContentViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        headView.layoutView(offset: scrollView.contentOffset)
         let offsetY = scrollView.contentOffset.y
+        if isStory {
+            headView.layoutView(offset: scrollView.contentOffset)
+        }
         if offsetY >= -55 && offsetY <= 0 {
             refreshView.direction = .Down
             dragging = true

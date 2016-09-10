@@ -68,6 +68,12 @@ extension EditorViewController: UITableViewDataSource {
 extension EditorViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let editor = editors[indexPath.row]
+        let webViewController = WebViewController()
+        webViewController.name = editor.name
+        webViewController.URLString = editor.url
+        self.navigationController?.pushViewController(webViewController, animated: true)
     }
 }
 

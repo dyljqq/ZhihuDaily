@@ -89,9 +89,10 @@ class ThemeViewController: UIViewController {
     
     func getData(callback: (()-> ())? = nil) {
         self.titleView.titleLabel.text = themeName
-        ThemeRequest.getThemeContent(themeId) { themeContent in
+        appDelegate.getThemeData(themeId) { themeContent in
+            
             self.themeContents = themeContent
-            self.stories = themeContent.stories
+            
             self.navImageView.kf_setImageWithURL(NSURL(string: themeContent.background), placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: { image, _, _, _ in
                 if let image = image {
                     if let headerView = self.headerView {
@@ -99,12 +100,14 @@ class ThemeViewController: UIViewController {
                     }
                 }
             })
+            self.stories = themeContent.stories
             self.tableView.reloadData()
             
             if let callback = callback {
                 callback()
             }
         }
+        
     }
     
 }
@@ -147,6 +150,12 @@ extension ThemeViewController: UITableViewDelegate {
             let editorVC = EditorViewController()
             editorVC.editors = themeContents.editors
             self.navigationController?.pushViewController(editorVC, animated: true)
+        } else {
+            let contentViewController = ContentViewController()
+            contentViewController.isStory = false
+            contentViewController.URLString = URLS.news_content_url(stories[indexPath.row].id)
+            contentViewController.indexPath = indexPath
+            self.navigationController?.pushViewController(contentViewController, animated: true)
         }
     }
     

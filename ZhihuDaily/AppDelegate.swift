@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var themeNavigationVC: UINavigationController!
     var revealViewController: SWRevealViewController?
     var themes = [Theme]()
+    var themeContents = ThemeContent()
     
     var storyRequest = StoryRequest()
     var banners = [Story]()
@@ -74,6 +75,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+    }
+    
+    func getThemeData(themeId: Int, callback: ((themeContent: ThemeContent)-> ())?) {
+        ThemeRequest.getThemeContent(themeId) { themeContent in
+            self.themeContents = themeContent
+            self.stories = themeContent.stories
+            
+            if let callback = callback {
+                callback(themeContent: themeContent)
+            }
+        }
     }
     
     func getMenu() {

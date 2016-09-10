@@ -50,6 +50,7 @@ class CommentViewController: UIViewController {
         self.view.addSubview(self.tableView)
         
         self.setLeftNavigationItemBack()
+//        self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor)
         getData()
     }
     

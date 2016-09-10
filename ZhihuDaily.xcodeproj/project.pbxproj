@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7330CDE11D82B07F0077A8E6 /* PraiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330CDE01D82B07F0077A8E6 /* PraiseView.swift */; };
+		7330CDE31D845C6F0077A8E6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330CDE21D845C6F0077A8E6 /* WebViewController.swift */; };
 		734C3DE51D6D401C00B1029B /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DE41D6D401C00B1029B /* CircleProgressView.swift */; };
 		734C3DE91D6D797C00B1029B /* DYLCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DE81D6D797C00B1029B /* DYLCarousel.swift */; };
 		734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DEB1D6D7B3B00B1029B /* BannerView.swift */; };
@@ -63,6 +64,7 @@
 		42D427B9294581762DA5E91E /* Pods_ZhihuDaily.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZhihuDaily.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFFBD821902AB51C25F535E /* Pods-ZhihuDaily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.debug.xcconfig"; sourceTree = "<group>"; };
 		7330CDE01D82B07F0077A8E6 /* PraiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PraiseView.swift; sourceTree = "<group>"; };
+		7330CDE21D845C6F0077A8E6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		734C3DE41D6D401C00B1029B /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		734C3DE81D6D797C00B1029B /* DYLCarousel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYLCarousel.swift; sourceTree = "<group>"; };
 		734C3DEB1D6D7B3B00B1029B /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				73BD80361D76D00C00109023 /* EditorViewController.swift */,
 				73E3CCFC1D81417A002FD27F /* ContentViewController.swift */,
 				73E3CD041D8295FA002FD27F /* CommentViewController.swift */,
+				7330CDE21D845C6F0077A8E6 /* WebViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				73BD80351D76CE3000109023 /* EditorCell.swift in Sources */,
 				73AEDC101D70122800BDDBCA /* ParallaxHeaderView.swift in Sources */,
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
+				7330CDE31D845C6F0077A8E6 /* WebViewController.swift in Sources */,
 				736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */,
 				7330CDE11D82B07F0077A8E6 /* PraiseView.swift in Sources */,
 				73BD80331D76C7D800109023 /* ThemeEditorCell.swift in Sources */,

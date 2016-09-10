@@ -253,7 +253,7 @@ extension UIImage {
 extension UIViewController {
     
     func setLeftNavigationItemBack() {
-        self.navigationController?.navigationBar.translucent = false
+//        self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.dyl_setBackgroundColor(navigationColor)
         let left = UIBarButtonItem(image: UIImage(named: "left_back"), style: .Plain, target: self, action: #selector(backAction))
         left.tintColor = whiteColor

@@ -75,7 +75,6 @@ class MainViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         topBanner.showTimer = false
-        self.navigationController?.navigationBarHidden = true
     }
     
     func setup() {
