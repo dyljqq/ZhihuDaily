@@ -3,9 +3,9 @@
 [知乎日报API地址](https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90) 
 
 ####App运行效果
-![](ScreenShot/1.png =100x190) ![](ScreenShot/2.png =100x190) ![](ScreenShot/3.png =100x190) 
+![](https://github.com/dyljqq/ZhihuDaily/ScreenShot/1.png =100x190) ![](https://github.com/dyljqq/ZhihuDaily/ScreenShot/2.png =100x190) ![](https://github.com/dyljqq/ZhihuDaily/ScreenShot/3.png =100x190) 
 
-![](ScreenShot/4.png =100x190) ![](ScreenShot/5.png =100x190) ![](ScreenShot/6.png =100x190)
+![](https://github.com/dyljqq/ZhihuDaily/ScreenShot/4.png =100x190) ![](https://github.com/dyljqq/ZhihuDaily/ScreenShot/5.png =100x190) ![](https://github.com/dyljqq/ZhihuDaily/ScreenShot/6.png =100x190)
 
 
 ####用到的第三方库
