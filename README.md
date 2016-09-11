@@ -3,10 +3,14 @@
 [知乎日报API地址](https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90) 
 
 ####App运行效果
-![](https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/1.png  =100x100) ![](https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/2.png) ![](https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/3.png) 
 
-![](https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/4.png) ![](https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/5.png) ![](https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/6.png)
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/1.png" width="100" height="100"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/2.png" width="100" height="100"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/3.png" width="100" height="100"/>
 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/4.png" width="100" height="100"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/5.png" width="100" height="100"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/6.png" width="100" height="100"/>
 
 ####用到的第三方库
 
