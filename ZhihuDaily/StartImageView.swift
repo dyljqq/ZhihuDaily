@@ -46,7 +46,6 @@ class StartImageView: UIView {
     init () {
         super.init(frame: screenBounds)
         setup()
-        setData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,6 +62,8 @@ class StartImageView: UIView {
         self.backView.addSubview(circleProgress)
         self.backView.addSubview(titleLabel)
         self.backView.addSubview(contentLabel)
+        
+        circleProgress.setProgress(0, animated: true)
         
         startImageView.snp_makeConstraints { make in
             make.edges.equalTo(self)
@@ -98,7 +99,9 @@ class StartImageView: UIView {
             return
         }
         if let URLString = userInfo["startImageURL"] as? String {
-            self.startImageView.kf_setImageWithURL(NSURL(string: URLString)!)
+            self.startImageView.kf_setImageWithURL(NSURL(string: URLString)!, completionHandler: { image, error, cacheType, imageURL in
+                self.setData()
+            })
         }
     }
     

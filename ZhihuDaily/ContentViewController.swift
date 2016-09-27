@@ -109,7 +109,10 @@ class ContentViewController: UIViewController {
                 print("body is not exist...")
                 return
             }
-            let css = data["css"]![0] as? String ?? ""
+            guard let array = data["css"] as? [String] else {
+                return
+            }
+            let css = array[0]
             var html = "<html>"
             html += "<head>"
             html += "<link rel=\"stylesheet\" href="

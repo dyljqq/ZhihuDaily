@@ -14,6 +14,11 @@ class EditorViewController: UIViewController {
         static let reuseIdentifier = "cell"
     }
     
+    lazy var overlay: NoMoreDataView = {
+        let view = NoMoreDataView(frame: self.view.bounds)
+        return view
+    }()
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRectMake(0, 0, screenSize.width, screenSize.height))
         tableView.backgroundColor = whiteColor
@@ -41,6 +46,7 @@ class EditorViewController: UIViewController {
     }
     
     func setup() {
+        
         self.title = "主编"
         self.view.addSubview(tableView)
         self.setLeftNavigationItemBack()
@@ -50,7 +56,7 @@ class EditorViewController: UIViewController {
 
 extension EditorViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return editors.count
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -76,4 +82,3 @@ extension EditorViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
 }
-

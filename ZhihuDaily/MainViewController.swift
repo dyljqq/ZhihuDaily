@@ -96,21 +96,9 @@ class MainViewController: UIViewController {
         headerView.delegate = self
         self.tableView.tableHeaderView = headerView
         
-        let lauchImageView = lauchViewController.view
-        lauchImageView.alpha = 0.99
+        lauchViewController.view.alpha = 0.99
         self.addChildViewController(lauchViewController)
-        self.view.addSubview(lauchImageView)
-        UIView.animateWithDuration(2.5, animations: {
-            lauchImageView.alpha = 1.0
-        }, completion: { stop in
-            UIView.animateWithDuration(0.2, animations: {
-                self.setNavigation()
-                lauchImageView.alpha = 0.0
-            }) { finished in
-                lauchImageView.removeFromSuperview()
-                self.tableView.hidden = false
-            }
-        })
+        self.view.addSubview(lauchViewController.view)
         
     }
     
@@ -123,6 +111,22 @@ class MainViewController: UIViewController {
         self.dates = appDelegate.dates
         self.scrollPoints = appDelegate.scrollPoints
         self.tableView.reloadData()
+        
+        // reload complete
+        dispatch_async(dispatch_get_main_queue()) {
+            let lauchImageView = self.lauchViewController.view
+            UIView.animateWithDuration(2.5, animations: {
+                lauchImageView.alpha = 1.0
+                }, completion: { stop in
+                    UIView.animateWithDuration(0.2, animations: {
+                        self.setNavigation()
+                        lauchImageView.alpha = 0.0
+                    }) { finished in
+                        lauchImageView.removeFromSuperview()
+                        self.tableView.hidden = false
+                    }
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -255,9 +259,6 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return tableView.fd_heightForCellWithIdentifier(Constant.reuseIdentifier) { cell in
-//            (cell as! StoryCell).updateStory(self.handleCell(indexPath))
-//        }
         return 93.0
     }
     
