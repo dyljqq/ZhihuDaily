@@ -8,8 +8,9 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
-typealias SuccessCallback = (value: [String: AnyObject])-> ()
+typealias SuccessCallback = (value: JSON)-> ()
 typealias FailureCallback = (error: NSError)-> ()
 
 class DailyRequest {
@@ -22,8 +23,9 @@ class DailyRequest {
         Alamofire.request(.GET, URLString).responseJSON { response in
             switch response.result {
             case .Success(let value):
-                print("response value: \(value)")
-                successCallback(value: value as! [String : AnyObject])
+                let json = JSON(value)
+                print("response value: \(json)")
+                successCallback(value: json)
             case .Failure(let error):
                 print("Network error: \(error)")
                 if let failureCallback = failureCallback {

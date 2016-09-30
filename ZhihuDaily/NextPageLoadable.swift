@@ -15,7 +15,7 @@ protocol NextPageLoadable: class {
     associatedtype LastIdType
     
     var data: [DataType] { get set }
-    var nextPageState: NextPageSate<LastIdType> { get set }
+    var nextPageState: NextPageState<LastIdType> { get set }
     
     func performLoad(successHandler: (rows: [DataType], hasNext: Bool, lastId: LastIdType?)-> (),
                      failHandler: ()-> ())

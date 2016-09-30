@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Comment {
     var author: String!
@@ -16,12 +17,12 @@ struct Comment {
     var avatar: String!
     var time: Int64!
     
-    mutating func convert(dic: [String: AnyObject]) {
-        author = dic["author"] as? String ?? ""
-        id = dic["id"] as? String ?? ""
-        content = dic["content"] as? String ?? ""
-        likes = dic["likes"] as? Int ?? 0
-        time = (dic["time"] as? NSNumber)?.longLongValue
-        avatar = dic["avatar"] as? String ?? ""
+    mutating func convert(dic: [String: JSON]) {
+        author = dic["author"]?.stringValue
+        id = dic["id"]?.stringValue
+        content = dic["content"]?.stringValue
+        likes = dic["likes"]?.intValue
+        time = dic["time"]?.int64Value
+        avatar = dic["avatar"]?.stringValue
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Navigationable {
     
     struct Constant {
         static let reuseIdentifier = "StoryCell"
@@ -138,7 +138,6 @@ class MainViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
-
 }
 
 extension MainViewController {
@@ -146,15 +145,7 @@ extension MainViewController {
     func setNavigation() {
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        let left = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
-        left.tintColor = whiteColor
-        navigationItem.setLeftBarButtonItem(left, animated: true)
-        
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
-        
+        setLeftNavigationItem("menu")
         self.titleView.titleLabel.text = "今日热闻"
         self.navigationItem.titleView = self.titleView
         self.titleView.showCircleView = false
@@ -201,8 +192,6 @@ extension MainViewController: UITableViewDelegate {
         let contentViewController = ContentViewController()
         contentViewController.URLString = URLS.news_content_url(data.id)
         contentViewController.indexPath = indexPath
-//        contentViewController.transitioningDelegate = self
-//        self.presentViewController(contentViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(contentViewController, animated: true)
     }
     

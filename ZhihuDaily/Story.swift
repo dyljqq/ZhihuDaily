@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Story {
     var id: String!
@@ -15,21 +16,12 @@ struct Story {
     var type: Int!
     var images: [String]!
     
-    mutating func convert(dic: [String: AnyObject]) {
-        self.id = "\((dic["id"] as! NSNumber).intValue)"
-        self.title = dic["title"] as! String
-        self.type = dic["type"] as! Int
-        
-        if let image = dic["image"] as? String {
-            self.image = image
-        }
-        
-        if let images = dic["images"] as? [String] {
-            self.images = images
-            if self.image == "" {
-                self.image = self.images.count > 0 ? self.images[0] : ""
-            }
-        }
+    mutating func convert(dic: [String: JSON]) {
+        self.id = dic["id"]?.stringValue
+        self.title = dic["title"]?.stringValue
+        self.type = dic["type"]?.intValue
+        self.images = dic["images"]?.arrayValue.map { $0.stringValue } ?? [String]()
+        self.image = dic["image"]?.stringValue ?? (self.images.count > 0 ? self.images[0] : "")
     }
     
 }
@@ -87,14 +79,8 @@ class StoryRequest {
     func getNewStories(callback: ()-> ()) {
         // get new story
         DailyRequest.get(URLString: URLS.new_story_url, successCallback: { value in
-            guard let topStories = value["top_stories"] as? [[String: AnyObject]] else {
-                print("no top_stories")
-                return
-            }
-            guard let stories = value["stories"] as? [[String : AnyObject]] else {
-                print("no stories")
-                return
-            }
+            let topStories = value["top_stories"].arrayValue
+            let stories = value["stories"].arrayValue
             self.banners = self.convertStory(topStories)
             self.stories = self.convertStory(stories)
             self.scrollPoints.append(ScrollPoint(start: 120, end: 120 + 93 * Double(self.stories.count)))
@@ -104,15 +90,12 @@ class StoryRequest {
     
     func getOldStories(diff: Int, callback: ()-> ()) {
         DailyRequest.get(URLString: URLS.old_news_url(diff.days.fromNow.format(format: "yyyyMMdd")), successCallback: { value in
-            guard let stories = value["stories"] as? [[String : AnyObject]] else {
-                print("no old story in \((-1).days.fromNow.format(format: "yyyyMMdd"))")
-                return ;
-            }
             
+            let stories = value["stories"].arrayValue
             let oldStories = self.convertStory(stories)
             self.oldStories.append(oldStories)
             
-            let dateString = value["date"] as! String
+            let dateString = value["date"].stringValue
             self.dates.append(dateString.dateString("yyyyMMdd"))
             
             let start = self.scrollPoints[abs(diff) - 1].end
@@ -124,11 +107,11 @@ class StoryRequest {
         })
     }
     
-    func convertStory(stories: [[String: AnyObject]])-> [Story] {
+    func convertStory(stories: [JSON])-> [Story] {
         var containers = [Story]()
         for story in stories {
             var model = Story()
-            model.convert(story)
+            model.convert(story.dictionaryValue)
             containers.append(model)
         }
         return containers

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NextPageSate<T> {
+struct NextPageState<T> {
     
     private(set) var hasNext: Bool
     private(set) var isLoading: Bool

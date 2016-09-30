@@ -105,18 +105,13 @@ class ContentViewController: UIViewController {
     
     private func getData() {
         DailyRequest.get(URLString: URLString, successCallback: { data in
-            guard let body = data["body"] as? String else {
-                print("body is not exist...")
-                return
-            }
-            guard let array = data["css"] as? [String] else {
-                return
-            }
+            let body = data["body"].stringValue
+            let array = data["css"].arrayValue
             let css = array[0]
             var html = "<html>"
             html += "<head>"
             html += "<link rel=\"stylesheet\" href="
-            html += css
+            html += css.stringValue
             html += "</head>"
             html += "<body>"
             html += body
@@ -124,11 +119,8 @@ class ContentViewController: UIViewController {
             html += "</html>"
             self.webView.loadHTMLString(html, baseURL: nil)
             
-            guard let images = data["images"] as? [String] else {
-                print("no images...")
-                return
-            }
-            self.bannerView.update(images[0] as String, content: data["title"] as? String ?? "")
+            let images = data["images"].arrayValue.map{ $0.stringValue }
+            self.bannerView.update(images[0], content: data["title"].stringValue)
         })
     }
     
@@ -255,7 +247,6 @@ extension ContentViewController: ParallaxHeaderViewDelegate {
 extension ContentViewController {
     
     private func back() {
-//        self.dismissViewControllerAnimated(true, completion: nil)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -267,7 +258,6 @@ extension ContentViewController {
         let commentViewController = CommentViewController()
         commentViewController.newID = indexPath.section == 0 ? appDelegate.stories[indexPath.row].id : appDelegate.oldStories[indexPath.section - 1][indexPath.row].id
         commentViewController.transitioningDelegate = self
-//        presentViewController(commentViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     

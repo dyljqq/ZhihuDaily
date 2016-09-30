@@ -96,9 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getStartImageURL() {
         DailyRequest.get(URLString: URLS.start_image_url, successCallback: { value in
-            if let urlString = value["img"] as? String {
-                NSNotificationCenter.defaultCenter().postNotificationName(start_image_notification, object: nil, userInfo: ["startImageURL": urlString])
-            }
+            let urlString = value["img"].stringValue
+            NSNotificationCenter.defaultCenter().postNotificationName(start_image_notification, object: nil, userInfo: ["startImageURL": urlString])
         })
     }
 

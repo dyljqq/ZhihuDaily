@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemeViewController: UIViewController {
+class ThemeViewController: UIViewController, Navigationable {
 
     struct Constant {
         static let reuseIdentifier = "StoryCell"
@@ -78,13 +78,7 @@ class ThemeViewController: UIViewController {
     
     private func setNavigation() {
         self.navigationItem.titleView = self.titleView
-        
-        let left = UIBarButtonItem(image: UIImage(named: "left_back"), style: .Plain, target: self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)))
-        left.tintColor = whiteColor
-        navigationItem.setLeftBarButtonItem(left, animated: true)
-        
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        setLeftNavigationItem("left_back")
     }
     
     func getData(callback: (()-> ())? = nil) {
@@ -146,7 +140,6 @@ extension ThemeViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.row == 0 {
-            // TODO
             let editorVC = EditorViewController()
             editorVC.editors = themeContents.editors
             self.navigationController?.pushViewController(editorVC, animated: true)

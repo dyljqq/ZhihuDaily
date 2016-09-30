@@ -62,6 +62,9 @@
 		73E3CD051D8295FA002FD27F /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD041D8295FA002FD27F /* CommentViewController.swift */; };
 		73E3CD071D8297FD002FD27F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD061D8297FD002FD27F /* Comment.swift */; };
 		73E3CD091D829B00002FD27F /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3CD081D829B00002FD27F /* CommentCell.swift */; };
+		73E6F86A1D9E31D400E5F173 /* DJHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E6F8691D9E31D400E5F173 /* DJHUD.framework */; };
+		73E6F86C1D9E32D600E5F173 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E6F86B1D9E32D600E5F173 /* SwiftyJSON.framework */; };
+		73E6F86E1D9E44B300E5F173 /* Navigationable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6F86D1D9E44B300E5F173 /* Navigationable.swift */; };
 		73FC01B71D9A616900F5F061 /* DoubleArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC01B61D9A616900F5F061 /* DoubleArrow.swift */; };
 		CB9E10BBCE0592D55C7C9CDF /* Pods_ZhihuDaily.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D427B9294581762DA5E91E /* Pods_ZhihuDaily.framework */; };
 /* End PBXBuildFile section */
@@ -137,6 +140,9 @@
 		73E3CD041D8295FA002FD27F /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		73E3CD061D8297FD002FD27F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		73E3CD081D829B00002FD27F /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		73E6F8691D9E31D400E5F173 /* DJHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJHUD.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ZhihuDaily-dnniyxskakzdqgfwbbdfkyjvtkmu/Build/Products/Debug-iphonesimulator/DJHUD/DJHUD.framework"; sourceTree = "<group>"; };
+		73E6F86B1D9E32D600E5F173 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		73E6F86D1D9E44B300E5F173 /* Navigationable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigationable.swift; sourceTree = "<group>"; };
 		73FC01B61D9A616900F5F061 /* DoubleArrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleArrow.swift; sourceTree = "<group>"; };
 		A206D4D1692739515AEA34E3 /* Pods-ZhihuDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +152,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E6F86C1D9E32D600E5F173 /* SwiftyJSON.framework in Frameworks */,
+				73E6F86A1D9E31D400E5F173 /* DJHUD.framework in Frameworks */,
 				73AEDC3B1D72B5D300BDDBCA /* SwiftDate.framework in Frameworks */,
 				73AEDC361D70AA1200BDDBCA /* Kingfisher.framework in Frameworks */,
 				73CA2D681D6BF21E009DD62A /* SnapKit.framework in Frameworks */,
@@ -240,6 +248,7 @@
 				7386BEBB1D9A38F400FFCECD /* OverlayPresentable.swift */,
 				7386BEA81D9A172300FFCECD /* NextPageLoadable.swift */,
 				7386BEBD1D9A44BD00FFCECD /* ReloadableType.swift */,
+				73E6F86D1D9E44B300E5F173 /* Navigationable.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -358,6 +367,8 @@
 		97CE1D95516933D74EFDFC40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73E6F86B1D9E32D600E5F173 /* SwiftyJSON.framework */,
+				73E6F8691D9E31D400E5F173 /* DJHUD.framework */,
 				73AEDC3A1D72B5D300BDDBCA /* SwiftDate.framework */,
 				73AEDC351D70AA1200BDDBCA /* Kingfisher.framework */,
 				734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */,
@@ -516,6 +527,7 @@
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
 				7386BEB71D9A388100FFCECD /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				7330CDE31D845C6F0077A8E6 /* WebViewController.swift in Sources */,
+				73E6F86E1D9E44B300E5F173 /* Navigationable.swift in Sources */,
 				736EE50D1D75919200C7834D /* SWRevealViewController.m in Sources */,
 				7330CDE11D82B07F0077A8E6 /* PraiseView.swift in Sources */,
 				73BD80331D76C7D800109023 /* ThemeEditorCell.swift in Sources */,
@@ -659,6 +671,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/UITableView+FDTemplateLayoutCell",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
 				);
 				INFOPLIST_FILE = ZhihuDaily/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -678,6 +691,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/UITableView+FDTemplateLayoutCell",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
 				);
 				INFOPLIST_FILE = ZhihuDaily/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

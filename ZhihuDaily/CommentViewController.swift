@@ -24,7 +24,7 @@ class CommentViewController: UIViewController {
     
     // NextPageLoadable
     var data = [[Comment]]()
-    var nextPageState = NextPageSate<String>()
+    var nextPageState = NextPageState<String>()
     
     var newID = ""
     var longComments = [Comment]()
@@ -67,11 +67,9 @@ class CommentViewController: UIViewController {
         switch direction {
         case .Down:
             data[1] = [Comment]()
-            gesture.view?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
             direction = .Up
         case .Up:
             data[1] = shortComments
-            gesture.view?.transform = CGAffineTransformIdentity
             direction = .Down
         }
         tableView.reloadData()
@@ -79,7 +77,10 @@ class CommentViewController: UIViewController {
             if self.data[1].count > 0 {
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: .Top, animated: true)
             } else {
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
+                if self.data[0].count > 0 {
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
+
+                }
             }
         }
     }
@@ -97,7 +98,7 @@ extension CommentViewController: UITableViewDataSource {
         label.font = Font.font(size: 15)
         view.addSubview(label)
         
-        if section == 0 && self.longComments.count > 0 {
+        if section == 0 {
             label.text = "\(self.longComments.count)条长评"
         } else if self.shortComments.count > 0  {
             label.text = "\(self.shortComments.count)条短评"
@@ -108,6 +109,11 @@ extension CommentViewController: UITableViewDataSource {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(directAction(_:)))
             arrow.addGestureRecognizer(gesture)
             view.userInteractionEnabled = true
+            
+            switch direction {
+            case .Up: arrow.transform = CGAffineTransformIdentity
+            case .Down: arrow.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            }
             
             let line = UIView()
             line.backgroundColor = lineColor
@@ -188,12 +194,10 @@ extension CommentViewController: NextPageLoadable {
         // get long comments
         dispatch_group_enter(group)
         DailyRequest.get(URLString: URLS.news_long_comment(newID), successCallback: { data in
-            guard let comments = data["comments"] as? [[String: AnyObject]] else {
-                return
-            }
+            let comments = data["comments"].arrayValue
             for dic in comments {
                 var comment = Comment()
-                comment.convert(dic)
+                comment.convert(dic.dictionaryValue)
                 self.longComments.append(comment)
             }
             dispatch_group_leave(group)
@@ -202,12 +206,10 @@ extension CommentViewController: NextPageLoadable {
         // get short comments
         dispatch_group_enter(group)
         DailyRequest.get(URLString: URLS.news_short_comment(newID), successCallback: { data in
-            guard let comments = data["comments"] as? [[String: AnyObject]] else {
-                return
-            }
+            let comments = data["comments"].arrayValue
             for dic in comments {
                 var comment = Comment()
-                comment.convert(dic)
+                comment.convert(dic.dictionaryValue)
                 self.shortComments.append(comment)
             }
             dispatch_group_leave(group)
@@ -215,13 +217,9 @@ extension CommentViewController: NextPageLoadable {
         
         dispatch_group_notify(group, dispatch_get_main_queue(), {
             var comments = [[Comment]]()
-            if self.longComments.count > 0 {
-                comments.append(self.longComments)
-            }
-            if self.shortComments.count > 0 {
-                comments.append([Comment]())
-            }
-            self.displayOverlay(comments.count == 0)
+            comments.append(self.longComments.count > 0 ? self.longComments : [Comment]())
+            comments.append([Comment]())
+            self.displayOverlay(self.longComments.count + self.shortComments.count == 0)
             self.title = "\(self.longComments.count + self.shortComments.count)条评论"
             
             successHandler(rows: comments, hasNext: true, lastId: "")
