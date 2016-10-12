@@ -46,7 +46,6 @@ class EditorViewController: UIViewController {
     }
     
     func setup() {
-        
         self.title = "主编"
         self.view.addSubview(tableView)
         self.setLeftNavigationItemBack()

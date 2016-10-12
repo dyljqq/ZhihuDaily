@@ -36,4 +36,5 @@ struct URLS {
     static func news_short_comment(newId: String)-> String {
         return prefix + "story/" + newId + "/short-comments"
     }
+    
 }

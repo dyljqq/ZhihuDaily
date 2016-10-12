@@ -16,7 +16,7 @@ class MainViewController: UIViewController, Navigationable {
     }
     
     private var transition = RightTransition()
-    
+    @objc 
     private var lauchViewController: LauchViewController = LauchViewController()
     private lazy var topBanner: DYLParallelView = {
         let topBanner = DYLParallelView(frame: CGRectMake(0, 0, 375, Constant.maxOffsetY))
@@ -145,12 +145,26 @@ extension MainViewController {
     func setNavigation() {
         self.navigationItem.titleView?.hidden = false
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
+        
+        // left
         setLeftNavigationItem("menu")
+        
+        // right
+        let right = UIBarButtonItem(image: UIImage(named: "article"), style: .Plain, target: self, action: #selector(articleAction))
+        right.tintColor = whiteColor;
+        navigationItem.setRightBarButtonItem(right, animated: true)
+        
         self.titleView.titleLabel.text = "今日热闻"
         self.navigationItem.titleView = self.titleView
         self.titleView.showCircleView = false
         
     }
+    
+    func articleAction() {
+        // TODO
+        navigationController?.pushViewController(ColumnViewController(), animated: true)
+    }
+    
 }
 
 extension MainViewController: DYLParallelDelegate {

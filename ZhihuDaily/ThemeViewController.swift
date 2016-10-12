@@ -59,7 +59,7 @@ class ThemeViewController: UIViewController, Navigationable {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.dyl_setBackgroundColor(clearColor)
     }
     

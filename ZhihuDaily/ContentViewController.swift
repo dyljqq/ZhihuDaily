@@ -120,7 +120,7 @@ class ContentViewController: UIViewController {
             self.webView.loadHTMLString(html, baseURL: nil)
             
             let images = data["images"].arrayValue.map{ $0.stringValue }
-            self.bannerView.update(images[0], content: data["title"].stringValue)
+            self.bannerView.update(images.count > 0 ? images[0] : "", content: data["title"].stringValue)
         })
     }
     

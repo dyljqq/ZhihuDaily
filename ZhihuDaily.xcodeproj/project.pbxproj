@@ -15,6 +15,8 @@
 		734C3DEE1D6D8CEE00B1029B /* DYLParallelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DED1D6D8CEE00B1029B /* DYLParallelView.swift */; };
 		734C3DF11D6DA20E00B1029B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF01D6DA20E00B1029B /* Story.swift */; };
 		734C3DF41D6EB7FD00B1029B /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C3DF31D6EB7FD00B1029B /* StoryCell.swift */; };
+		734F69EE1DACCA4600817CE2 /* ColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734F69ED1DACCA4600817CE2 /* ColumnViewController.swift */; };
+		734F69F01DACCFDE00817CE2 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734F69EF1DACCFDE00817CE2 /* Column.swift */; };
 		736EE4FF1D751F5B00C7834D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE4FE1D751F5B00C7834D /* Theme.swift */; };
 		736EE5011D754A9200C7834D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5001D754A9200C7834D /* MenuViewController.swift */; };
 		736EE5031D754BBE00C7834D /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736EE5021D754BBE00C7834D /* ThemeCell.swift */; };
@@ -83,6 +85,8 @@
 		734C3DF51D6EC36500B1029B /* UITableView_FDTemplateLayoutCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UITableView_FDTemplateLayoutCell.framework; path = "Pods/../build/Debug-iphoneos/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework"; sourceTree = "<group>"; };
 		734C3DF81D6EC74500B1029B /* ZhihuDaily-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-swift.h"; sourceTree = "<group>"; };
 		734C3DF91D6EC94300B1029B /* ZhihuDaily-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhihuDaily-Bridging-Header.h"; sourceTree = "<group>"; };
+		734F69ED1DACCA4600817CE2 /* ColumnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnViewController.swift; sourceTree = "<group>"; };
+		734F69EF1DACCFDE00817CE2 /* Column.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		736EE4FE1D751F5B00C7834D /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		736EE5001D754A9200C7834D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		736EE5021D754BBE00C7834D /* ThemeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				736EE4FE1D751F5B00C7834D /* Theme.swift */,
 				73E3CD061D8297FD002FD27F /* Comment.swift */,
 				7386BEA61D9A164D00FFCECD /* NextPageState.swift */,
+				734F69EF1DACCFDE00817CE2 /* Column.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				73E3CCFC1D81417A002FD27F /* ContentViewController.swift */,
 				73E3CD041D8295FA002FD27F /* CommentViewController.swift */,
 				7330CDE21D845C6F0077A8E6 /* WebViewController.swift */,
+				734F69ED1DACCA4600817CE2 /* ColumnViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -525,6 +531,7 @@
 				73BD80351D76CE3000109023 /* EditorCell.swift in Sources */,
 				73AEDC101D70122800BDDBCA /* ParallaxHeaderView.swift in Sources */,
 				73B82B081D6EE6F100CB9634 /* Extension.swift in Sources */,
+				734F69F01DACCFDE00817CE2 /* Column.swift in Sources */,
 				7386BEB71D9A388100FFCECD /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				7330CDE31D845C6F0077A8E6 /* WebViewController.swift in Sources */,
 				73E6F86E1D9E44B300E5F173 /* Navigationable.swift in Sources */,
@@ -540,6 +547,7 @@
 				7386BEBC1D9A38F400FFCECD /* OverlayPresentable.swift in Sources */,
 				73E3CD051D8295FA002FD27F /* CommentViewController.swift in Sources */,
 				73CA2D571D6AF5D6009DD62A /* URLS.swift in Sources */,
+				734F69EE1DACCA4600817CE2 /* ColumnViewController.swift in Sources */,
 				7386BEA91D9A172300FFCECD /* NextPageLoadable.swift in Sources */,
 				734C3DEC1D6D7B3B00B1029B /* BannerView.swift in Sources */,
 				7386BEB91D9A388100FFCECD /* UITableView+FDTemplateLayoutCell.m in Sources */,
