@@ -4,13 +4,13 @@
 
 ####App运行效果
 
-<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/1.png" width="100" height="100"/> 
-<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/2.png" width="100" height="100"/> 
-<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/3.png" width="100" height="100"/>
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/1.png" width="175" height="325"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/2.png" width="175" height="325"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/3.png" width="175" height="325"/>
 
-<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/4.png" width="100" height="100"/> 
-<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/5.png" width="100" height="100"/> 
-<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/6.png" width="100" height="100"/>
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/4.png" width="175" height="325"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/5.png" width="175" height="325"/> 
+<img src="https://github.com/dyljqq/ZhihuDaily/raw/master/ScreenShot/6.png" width="175" height="325"/>
 
 ####用到的第三方库
 
